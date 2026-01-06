@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import HeaderTwo from "@/layout/header/header-two";
 import MainWrapper from "@/components/wrapper/main-wrapper";
-import FooterInner from "@/layout/footer/footer-inner";
+import Footer from "@/layout/footer/footer-one";
 import PortfolioDetailsWrapper from "../_components/portfolio-details-wrapper";
 import PortfolioDetailsArea from "../_components/portfolio-details-area";
 import PageLoader from "@/components/common/page-loader";
@@ -75,6 +75,20 @@ export default function PortfolioDetailsContent({ slug }: PortfolioDetailsConten
           throw new Error(`API error: ${res.status} ${res.statusText}`);
         }
 
+        // Check if response is JSON before parsing
+        const contentType = res.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const text = await res.text();
+          // If response starts with HTML, it's an error page
+          if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
+            throw new Error("API returned HTML error page");
+          }
+          // Try to parse as JSON anyway if it's not HTML
+          const data: Project = JSON.parse(text);
+          setProject(data);
+          return;
+        }
+
         const data: Project = await res.json();
         setProject(data);
       } catch (err: any) {
@@ -115,7 +129,7 @@ export default function PortfolioDetailsContent({ slug }: PortfolioDetailsConten
                 </div>
               </section>
             </main>
-            <FooterInner />
+            <Footer />
           </PortfolioDetailsWrapper>
         </MainWrapper>
       </>
@@ -137,7 +151,7 @@ export default function PortfolioDetailsContent({ slug }: PortfolioDetailsConten
           <main>
             <PortfolioDetailsArea project={project} />
           </main>
-          <FooterInner />
+          <Footer />
         </PortfolioDetailsWrapper>
       </MainWrapper>
     </>

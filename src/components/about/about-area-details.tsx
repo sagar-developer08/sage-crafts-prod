@@ -1,19 +1,25 @@
 import Image from "next/image";
-import gallery_img_1 from "@/assets/imgs/gallery/image-19.webp";
-import gallery_img_2 from "@/assets/imgs/gallery/image-20.webp";
-import gallery_img_3 from "@/assets/imgs/gallery/image-21.webp";
-import gallery_img_4 from "@/assets/imgs/gallery/image-22.webp";
 import Link from "next/link";
+import { AboutData } from "@/types/homeData";
 
-const gallery_images = [
-  gallery_img_1,
-  gallery_img_2,
-  gallery_img_3,
-  gallery_img_4,
-  gallery_img_1,
+type AboutAreaDetailsProps = {
+  aboutArea?: AboutData["aboutArea"];
+};
+
+const defaultInfoList = {
+  items: ["Art Direction", "Capability", "Sustainability"],
+};
+
+const defaultParagraphs = [
+  "Sage Craft is the first and only creative agency for your real exploration. It's one private place to save everything you can realize about digital beautifully design.",
+  "As a global creative agency, we understand the importance of staying ahead of the game. That's why we partner with some of the world's best talent to bring fresh ideas.",
 ];
 
-export default function AboutAreaDetails() {
+export default function AboutAreaDetails({ aboutArea }: AboutAreaDetailsProps) {
+  const infoList = aboutArea?.infoList?.items || defaultInfoList.items;
+  const paragraphs = aboutArea?.paragraphs || defaultParagraphs;
+  const galleryImages = aboutArea?.galleryImages || [];
+
   return (
     <section className="about-area-details">
       <div className="container large">
@@ -34,23 +40,18 @@ export default function AboutAreaDetails() {
           <div className="section-content-wrapper fade-anim">
             <div className="info-list">
               <ul>
-                <li>Art Direction</li>
-                <li>Capability</li>
-                <li>Sustainability </li>
+                {infoList.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
               </ul>
             </div>
             <div className="section-content">
               <div className="text-wrapper" data-direction="right">
-                <p className="text">
-                  Sage Craft is the first and only creative agency for your real
-                  exploration. It’s one private place to save everything you can
-                  realize about digital beautifully design.
-                </p>
-                <p className="text">
-                  As a global creative agency, we understand the importance of
-                  staying ahead of the game. That’s why we partner with some of
-                  the {"world's"} best talent to bring fresh ideas
-                </p>
+                {paragraphs.map((paragraph, idx) => (
+                  <p key={idx} className="text">
+                    {paragraph}
+                  </p>
+                ))}
               </div>
               <div className="btn-wrapper" data-direction="right">
                 <Link href="/about" className="rr-btn">
@@ -64,15 +65,23 @@ export default function AboutAreaDetails() {
           </div>
         </div>
       </div>
-      <div className="moving-gallery fade-anim">
-        <ul className="wrapper-gallery">
-          {gallery_images.map((g, i) => (
-            <li key={i}>
-              <Image src={g} alt={`image-${i}`} style={{height:"auto"}} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      {galleryImages.length > 0 && (
+        <div className="moving-gallery fade-anim">
+          <ul className="wrapper-gallery">
+            {[...galleryImages, ...galleryImages].map((galleryImage, i) => (
+              <li key={i}>
+                <Image
+                  src={galleryImage.imageUrl}
+                  alt={galleryImage.alt || `image-${i}`}
+                  width={400}
+                  height={300}
+                  style={{ height: "auto" }}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </section>
   );
 }

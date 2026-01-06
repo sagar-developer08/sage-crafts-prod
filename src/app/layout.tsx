@@ -344,9 +344,92 @@ const Sequel_sans_medium = localFont({
   variable: "--font_sequelsansmediumbody",
 });
 
+import { getSeoSettings } from '@/utils/seoSettings';
+
+// Fetch SEO settings for metadata
+const seoSettings = await getSeoSettings();
+
 export const metadata: Metadata = {
-  title: "Sage Craft - Creative Agency and Portfolio Next js Template",
-  description: "Sage Craft is a creative agency and portfolio template built with Next.js, designed to showcase your work and services effectively.",
+  title: {
+    default: "Sage Craft - Creative Agency & Portfolio",
+    template: "%s | Sage Craft",
+  },
+  description:
+    "Sage Craft is a modern creative agency and portfolio template built with Next.js, designed to showcase design, development, and digital experiences.",
+  keywords: [
+    "creative agency",
+    "portfolio",
+    "next.js agency template",
+    "web design",
+    "branding",
+    "digital studio",
+  ],
+  authors: [{ name: "Sage Craft" }],
+  creator: "Sage Craft",
+  publisher: "Sage Craft",
+  metadataBase: new URL(seoSettings.siteUrl),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: seoSettings.siteUrl,
+    siteName: "Sage Craft",
+    title: "Sage Craft - Creative Agency & Portfolio",
+    description:
+      "Showcase your creative work with Sage Craft – a high-performance Next.js portfolio and agency template.",
+    images: [
+      {
+        url: seoSettings.defaultOgImage || "/assets/imgs/logo/sagecrafts-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Sage Craft Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sage Craft - Creative Agency",
+    description:
+      "A modern Next.js creative agency & portfolio template built for performance and SEO.",
+    images: [seoSettings.defaultOgImage || "/assets/imgs/logo/logo.png"],
+  },
+  robots: {
+    index: seoSettings.productionReady,
+    follow: seoSettings.productionReady,
+    googleBot: {
+      index: seoSettings.productionReady,
+      follow: seoSettings.productionReady,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    ...(seoSettings.googleVerificationCode && {
+      google: seoSettings.googleVerificationCode,
+    }),
+    ...(seoSettings.bingVerificationCode && {
+      bing: seoSettings.bingVerificationCode,
+    }),
+  },
+  icons: {
+    icon: [
+      { url: "/assets/imgs/logo/favicon.png", sizes: "any" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [
+      { url: "/assets/imgs/logo/sagecrafts-logo.png", sizes: "180x180" },
+    ],
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#000000",
 };
 
 export default function RootLayout({

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from '@/assets/imgs/shape/logo-6.svg';
+import logo from '@/assets/imgs/logo/sagecrafts-logo.png';
 import Link from "next/link";
 
 export default function FooterFive() {

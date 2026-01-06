@@ -74,7 +74,7 @@ export default function ServiceContentWrapper({
 
           <div className="text-wrapper">
             {paragraphs.map((p, idx) => (
-              <p className="text text-invert" key={idx}>
+              <p className="text text-invert-scroll" key={idx}>
                 {p}
               </p>
             ))}
@@ -88,15 +88,14 @@ export default function ServiceContentWrapper({
         >
           <div className="thumb parallax-view">
             <Image
-  src={getSafeImageSrc(leftImage.src)}
-  alt={leftImage.alt}
-  data-speed={leftImage.speed}
-  width={leftImage.width ?? 100}
-  height={leftImage.height ?? 100}
-  style={{ height: "auto" }}
-  unoptimized={isExternalFallback(getSafeImageSrc(leftImage.src))}
-/>
-
+              src={getSafeImageSrc(rightImage.src)}
+              alt={rightImage.alt}
+              data-speed={rightImage.speed}
+              width={rightImage.width ?? 740}
+              height={rightImage.height ?? 930}
+              style={{ height: "auto" }}
+              unoptimized={isExternalFallback(getSafeImageSrc(rightImage.src))}
+            />
           </div>
         </div>
       </div>

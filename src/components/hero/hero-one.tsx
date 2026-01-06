@@ -62,7 +62,7 @@ export default function HeroOne({ hero }: HeroProps) {
                     className="section-title font-instrumentsans-medium char-anim"
                     data-delay="0.45"
                   >
-                    Let’s sharpen your brand with
+                    Scalable digital solutions for growing businesses
                     <span>
                       <Image
                         className="title-shape-1 fade-anim"

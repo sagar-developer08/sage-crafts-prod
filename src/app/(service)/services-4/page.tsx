@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { getSeoMetadata } from "@/utils/seo";
 import HeaderTwo from "@/layout/header/header-two";
 import MainWrapper from "@/components/wrapper/main-wrapper";
-import FooterInner from "@/layout/footer/footer-inner";
+import Footer from "@/layout/footer/footer-one";
 import PageTitle from "@/components/common/page-title";
 import ServiceFourWrapper from "./_components/service-4-wrapper";
 import ClientAreaFour from "@/components/client/client-area-4";
@@ -75,7 +75,7 @@ export default function ServicesFourPage() {
           </main>
 
           {/* Footer area start */}
-          <FooterInner />
+          <Footer />
           {/* Footer area end */}
         </ServiceFourWrapper>
       </MainWrapper>

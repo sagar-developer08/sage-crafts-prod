@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import MainMenu from "./main-menu";
-import logo from "@/assets/imgs/logo/logo-2.png";
+import logo from "@/assets/imgs/logo/sagecrafts-logo.png";
 import icon from "@/assets/imgs/icon/icon-2.webp";
 import SideToggle from "@/components/common/side-toggle";
 

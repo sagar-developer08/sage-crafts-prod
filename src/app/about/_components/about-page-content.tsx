@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { ApiResponse } from "@/types/homeData";
 import HeaderTwo from "@/layout/header/header-two";
 import MainWrapper from "@/components/wrapper/main-wrapper";
-import FooterInner from "@/layout/footer/footer-inner";
+import Footer from "@/layout/footer/footer-one";
 import PageTitle from "@/components/common/page-title";
 import PageLoader from "@/components/common/page-loader";
 import AboutWrapper from "./about-wrapper";
@@ -12,7 +12,6 @@ import AboutAreaDetails from "@/components/about/about-area-details";
 import ApproachAboutArea from "@/components/approach/approach-about-area";
 import InfoAreaAbout from "./info-area-about";
 import ClientSlider from "@/components/client/client-slider";
-import { TeamWrapperArea } from "@/components/team/team-area";
 
 export default function AboutPageContent() {
   const [data, setData] = useState<ApiResponse | null>(null);
@@ -31,6 +30,21 @@ export default function AboutPageContent() {
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
+
+        // Check if response is JSON before parsing
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const text = await response.text();
+          // If response starts with HTML, it's an error page
+          if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
+            throw new Error("API returned HTML error page");
+          }
+          // Try to parse as JSON anyway if it's not HTML
+          const jsonResponse: ApiResponse = JSON.parse(text);
+          setData(jsonResponse);
+          return;
+        }
+
         const jsonResponse: ApiResponse = await response.json();
         setData(jsonResponse);
       } catch (err) {
@@ -65,8 +79,10 @@ export default function AboutPageContent() {
     infoSection,
     mediaSection,
     awardsSection,
-    teamSection,
   } = data.about;
+
+  // Get client section data from home data
+  const clientSection = data?.home?.clientSection;
 
   return (
     <>
@@ -85,15 +101,15 @@ export default function AboutPageContent() {
         <AboutWrapper>
           <main>
             {/* page title area start */}
-            <PageTitle title="Since 2012" />
+            <PageTitle title={pageTitle?.title || "Since 2020"} />
             {/* page title area end */}
 
             {/* about area details start */}
-            <AboutAreaDetails />
+            <AboutAreaDetails aboutArea={aboutArea} />
             {/* about area details end */}
 
             {/* about approach area start */}
-            <ApproachAboutArea />
+            <ApproachAboutArea approachSection={approachSection} />
             {/* about approach area end */}
 
             {/* about info area start */}
@@ -107,15 +123,14 @@ export default function AboutPageContent() {
                   <div className="section-header fade-anim">
                     <div className="text-wrapper">
                       <p className="text">
-                        Help to brands growing up and show their success stories
-                        to the world
+                        Helping brands to grow and say their success stories to the world.
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="clients-wrapper-box fade-anim">
                   <div className="clients-wrapper">
-                    <ClientSlider />
+                    <ClientSlider companyNames={clientSection?.companyNames} />
                   </div>
                 </div>
               </div>
@@ -152,44 +167,10 @@ export default function AboutPageContent() {
               </div>
             </section> */}
             {/* about award area end */}
-
-            {/* team area start */}
-            <section className="team-area-about-page">
-              <div className="container large">
-                <div className="team-area-about-page-inner section-spacing-top">
-                  <div className="section-header fade-anim">
-                    <div className="section-title-wrapper">
-                      <div className="subtitle-wrapper">
-                        <span className="section-subtitle">Team</span>
-                      </div>
-                      <div className="title-wrapper">
-                        <h2 className="section-title font-sequelsans-romanbody">
-                          Meet the talented squad, behind the creativity
-                        </h2>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="team-wrapper-box fade-anim">
-                    <TeamWrapperArea
-                      members={teamSection?.members?.map((m) => ({
-                        name: m.name,
-                        post: m.post,
-                        imageUrl: m.imageUrl,
-                      }))}
-                    />
-                  </div>
-                </div>
-              </div>
-            </section>
-            {/* team area end */}
-
-            {/* team list area start */}
-            {/* <TeamListArea/> */}
-            {/* team list area end */}
           </main>
 
           {/* Footer area start */}
-          <FooterInner />
+          <Footer />
           {/* Footer area end */}
         </AboutWrapper>
       </MainWrapper>

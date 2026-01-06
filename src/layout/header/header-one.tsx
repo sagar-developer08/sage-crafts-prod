@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from '@/assets/imgs/logo/logo.png';
+import logo from '@/assets/imgs/logo/sagecrafts-logo.png';
 import MainMenu from './main-menu';
 import SideToggle from '@/components/common/side-toggle';
 
@@ -22,8 +22,8 @@ const Header = () => {
                   src={logo}
                   className="normal-logo"
                   alt="Site Logo"
-                  width={95}
-                  height={23}
+                  style={{ height: "auto", width: "auto", maxHeight: "50px" }}
+                  priority
                 />
               </Link>
             </div>

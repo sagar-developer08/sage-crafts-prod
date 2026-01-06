@@ -13,6 +13,14 @@ export interface SeoData {
   ogImage: string;
   canonicalUrl: string;
   robots: SeoRobots;
+  ogType?: string;
+  ogLocale?: string;
+  twitterSite?: string;
+  twitterCreator?: string;
+  author?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  schemaType?: string;
 }
 
 export interface SeoApiResponse {
@@ -58,6 +66,28 @@ export async function fetchSeoData(page: string): Promise<SeoData | null> {
     if (!response.ok) {
       console.warn(`SEO API returned ${response.status} for page: ${page}`);
       return null;
+    }
+
+    // Check if response is JSON before parsing
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      const text = await response.text();
+      // If response starts with HTML, it's an error page
+      if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
+        console.warn(`API returned HTML instead of JSON for SEO page: ${page}`);
+        return null;
+      }
+      // Try to parse as JSON anyway if it's not HTML
+      try {
+        const result: SeoApiResponse = JSON.parse(text);
+        if (!result.success || !result.data) {
+          console.warn(`SEO API returned unsuccessful response for page: ${page}`);
+          return null;
+        }
+        return result.data;
+      } catch {
+        return null;
+      }
     }
 
     const result: SeoApiResponse = await response.json();
@@ -128,8 +158,14 @@ export function generateSeoMetadata(
           alt: seo.title,
         },
       ],
-      locale: 'en_US',
-      type: 'website',
+      locale: (seoData as any)?.ogLocale || 'en_US',
+      type: ((seoData as any)?.ogType || 'website') as 'website' | 'article' | 'service' | 'product' | 'profile',
+      ...((seoData as any)?.publishedTime && {
+        publishedTime: (seoData as any).publishedTime,
+      }),
+      ...((seoData as any)?.modifiedTime && {
+        modifiedTime: (seoData as any).modifiedTime,
+      }),
     },
 
     // Twitter Card metadata
@@ -138,6 +174,12 @@ export function generateSeoMetadata(
       title: seo.title,
       description: seo.description,
       images: [ogImage],
+      ...((seoData as any)?.twitterSite && {
+        site: (seoData as any).twitterSite,
+      }),
+      ...((seoData as any)?.twitterCreator && {
+        creator: (seoData as any).twitterCreator,
+      }),
     },
   };
 }

@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { getSeoMetadata } from "@/utils/seo";
 import HeaderTwo from "@/layout/header/header-two";
 import MainWrapper from "@/components/wrapper/main-wrapper";
-import FooterInner from "@/layout/footer/footer-inner";
+import Footer from "@/layout/footer/footer-one";
 import FAQArea from "@/components/faq/faq-area";
 import ServiceDetailsWrapper from "./_components/service-details-wrapper";
 import ServiceDetailsHero from "./_components/service-details-hero";
@@ -60,7 +60,7 @@ export default function ServiceDetailsPage() {
           </main>
 
           {/* Footer area start */}
-          <FooterInner />
+          <Footer />
           {/* Footer area end */}
         </ServiceDetailsWrapper>
       </MainWrapper>

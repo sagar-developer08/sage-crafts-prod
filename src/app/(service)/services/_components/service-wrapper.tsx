@@ -2,7 +2,7 @@
 import gsap from "gsap";
 import { ScrollToPlugin, ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
-import { fadeAnimation, textInvertWithScrollAnimation } from "@/utils/title-anim";
+import { fadeAnimation, textInvertWithScrollAnimation, textBoldScrollAnimation } from "@/utils/title-anim";
 import { throwableAnimation } from "@/utils/throwable-anim";
 import { growAnimation } from "@/utils/img-anim";
 
@@ -18,6 +18,7 @@ export default function ServiceWrapper({ children }: Props) {
       throwableAnimation();
       growAnimation();
       textInvertWithScrollAnimation();
+      textBoldScrollAnimation();
     }, 100);
     return () => clearTimeout(timer);
   }, {});

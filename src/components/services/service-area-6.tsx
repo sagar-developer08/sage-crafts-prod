@@ -118,13 +118,12 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import ServiceArea from "@/components/services/service-area";
 import ServiceContentWrapper from "./service-content-wrapper";
-import { ServiceInfo, PortfolioItem } from "../../types/homeData";
+import { ServiceInfo, HomeData } from "../../types/homeData";
 
 type ServiceAreaSixProps = {
   serviceInfo?: ServiceInfo;
-  portfolio?: PortfolioItem[];
+  serviceSection?: HomeData["serviceSection"];
 };
 
 type ServiceBox = {
@@ -187,23 +186,19 @@ const defaultServiceBoxes: ServiceBox[] = [
 
 export default function ServiceAreaSix({
   serviceInfo,
-  portfolio,
+  serviceSection,
 }: ServiceAreaSixProps) {
-  // Build services from portfolio if available
-  const servicesFromPortfolio: ServiceBox[] | null =
-    portfolio && portfolio.length > 0
-      ? portfolio.map((item, idx) => {
-          const number = `(0${idx + 1})`; // (01), (02), ...
-          const title = item.recentWork?.heading || defaultServiceBoxes[idx]?.title || "";
-          const services =
-            item.recentWork?.services && item.recentWork.services.length > 0
-              ? item.recentWork.services
+  // Build services from serviceSection (Complex proficiency) if available
+  const servicesFromSection: ServiceBox[] | null =
+    serviceSection?.services && serviceSection.services.length > 0
+      ? serviceSection.services.map((service, idx) => {
+          const number = service.number || `(0${idx + 1})`;
+          const title = service.title || defaultServiceBoxes[idx]?.title || "";
+          const services = service.list && service.list.length > 0
+              ? service.list
               : defaultServiceBoxes[idx]?.services || [];
 
-          const img =
-            item.projects && item.projects.length > 0 && item.projects[0].imageUrl
-              ? item.projects[0].imageUrl
-              : defaultServiceBoxes[idx]?.img || "/assets/imgs/gallery/image-3.webp";
+          const img = service.imageUrl || defaultServiceBoxes[idx]?.img || "/assets/imgs/gallery/image-3.webp";
 
           return {
             number,
@@ -215,8 +210,8 @@ export default function ServiceAreaSix({
       : null;
 
   const servicesToRender =
-    servicesFromPortfolio && servicesFromPortfolio.length > 0
-      ? servicesFromPortfolio
+    servicesFromSection && servicesFromSection.length > 0
+      ? servicesFromSection
       : defaultServiceBoxes;
 
   return (
@@ -231,7 +226,7 @@ export default function ServiceAreaSix({
               </div>
               <div className="title-wrapper">
                 <h2 className="section-title font-sequelsans-romanbody">
-                  We think out of the box when it comes to creative
+                  Services we <br /> provided
                 </h2>
               </div>
             </div>

@@ -31,10 +31,30 @@ export default function HomePage() {
           throw new Error("API_URL is not defined");
         }
         const response = await fetch(`${apiUrl}/all`);
+        
+        if (!response.ok) {
+          throw new Error(`API returned ${response.status}`);
+        }
+
+        // Check if response is JSON before parsing
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const text = await response.text();
+          // If response starts with HTML, it's an error page
+          if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
+            console.error('API returned HTML instead of JSON');
+            throw new Error('API returned HTML error page');
+          }
+          // Try to parse as JSON anyway if it's not HTML
+          const jsonResponse = JSON.parse(text);
+          setData(jsonResponse);
+          return;
+        }
+
         const jsonResponse = await response.json();
         setData(jsonResponse);
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching home data:', error);
       }
     };
     fetchData();

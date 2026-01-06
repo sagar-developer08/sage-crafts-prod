@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 import { ApiResponse } from "@/types/homeData";
 import HeaderTwo from "@/layout/header/header-two";
 import MainWrapper from "@/components/wrapper/main-wrapper";
-import FooterInner from "@/layout/footer/footer-inner";
+import Footer from "@/layout/footer/footer-one";
 import PageTitle from "@/components/common/page-title";
 import ServiceAreaSix from "@/components/services/service-area-6";
 import ServiceWrapper from "./service-wrapper";
-import ClientAreaFour from "@/components/client/client-area-4";
 import PageLoader from "@/components/common/page-loader";
 
 export default function ServicesPageContent() {
@@ -28,6 +27,21 @@ export default function ServicesPageContent() {
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
+
+        // Check if response is JSON before parsing
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const text = await response.text();
+          // If response starts with HTML, it's an error page
+          if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
+            throw new Error("API returned HTML error page");
+          }
+          // Try to parse as JSON anyway if it's not HTML
+          const jsonResponse: ApiResponse = JSON.parse(text);
+          setData(jsonResponse);
+          return;
+        }
+
         const jsonResponse: ApiResponse = await response.json();
         setData(jsonResponse);
       } catch (err) {
@@ -58,8 +72,7 @@ export default function ServicesPageContent() {
   const serviceInfo =
     data.services && data.services.length > 0 ? data.services[0] : undefined;
 
-  const portfolioItems = data.portfolio;
-  const clientSection = data.home.clientSection;
+  const serviceSection = data?.home?.serviceSection;
 
   return (
     <>
@@ -78,13 +91,11 @@ export default function ServicesPageContent() {
 
             <ServiceAreaSix
               serviceInfo={serviceInfo}
-              portfolio={portfolioItems}
+              serviceSection={serviceSection}
             />
-
-            <ClientAreaFour clientSection={clientSection} />
           </main>
 
-          <FooterInner />
+          <Footer />
         </ServiceWrapper>
       </MainWrapper>
     </>

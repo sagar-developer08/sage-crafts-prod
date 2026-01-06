@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useMemo } from "react";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
@@ -13,15 +13,7 @@ import client_6 from "@/assets/imgs/client/client-6.webp";
 import client_7 from "@/assets/imgs/client/client-7.webp";
 import client_8 from "@/assets/imgs/client/client-8.webp";
 
-const clientImages = [
-  client_1,
-  client_2,
-  client_3,
-  client_4,
-  client_5,
-  client_6,
-  client_7,
-  client_8,
+const defaultClientImages = [
   client_1,
   client_2,
   client_3,
@@ -32,7 +24,21 @@ const clientImages = [
   client_8,
 ];
 
-export default function ClientSlider() {
+type ClientSliderProps = {
+  companyNames?: string[];
+};
+
+export default function ClientSlider({ companyNames }: ClientSliderProps) {
+  // Use companyNames from API if provided, otherwise use default images
+  const clientImages = useMemo(() => {
+    if (companyNames && companyNames.length > 0) {
+      // Duplicate the array for seamless loop
+      return [...companyNames, ...companyNames];
+    }
+    // Duplicate default images for seamless loop
+    return [...defaultClientImages, ...defaultClientImages];
+  }, [companyNames]);
+
   return (
     <Swiper
       slidesPerView="auto"
@@ -45,9 +51,19 @@ export default function ClientSlider() {
       className="client-slider-active"
     >
       {clientImages.map((src, idx) => (
-        <SwiperSlide key={idx}>
+        <SwiperSlide key={idx} style={{ width: "auto" }}>
           <div className="client-box">
-            <Image src={src} alt="client" style={{ height: "auto" }} />
+            <Image 
+              src={src} 
+              alt="client" 
+              width={140}
+              height={140}
+              style={{ 
+                width: "100%", 
+                height: "100%", 
+                objectFit: "contain"
+              }} 
+            />
           </div>
         </SwiperSlide>
       ))}

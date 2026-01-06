@@ -1,5 +1,6 @@
 'use client';
 import { useState,useEffect } from "react";
+import Image from "next/image";
 // import {ApiResponse} from '../../types/homeData'
 // import {video} from '@/types/homeData'
 type VideoProps = {
@@ -23,6 +24,25 @@ export default function VideoBox({videoUrl}: {videoUrl?: any}) {
   // }, [])
   
   // const videoUrl = data?.home?.video?.videoUrl ?? "https://rrdevs.net/project-video/group-meeting.mp4";
+  
+  // Check if the URL is a GIF file
+  const isGif = videoUrl && (videoUrl.toLowerCase().endsWith('.gif') || videoUrl.toLowerCase().includes('.gif'));
+  
+  if (isGif) {
+    return (
+      <div className="video-box">
+        <Image
+          src={videoUrl}
+          alt="Video content"
+          className="video-area"
+          width={1920}
+          height={1080}
+          unoptimized
+          style={{ width: '100%', height: 'auto' }}
+        />
+      </div>
+    );
+  }
   
   return (
     <div className="video-box">

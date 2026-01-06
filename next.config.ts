@@ -32,6 +32,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'd3nt41cjjw3im8.cloudfront.net',
+        port: '',
+        pathname: '/**',
+      },
     ]
   },
   sassOptions:{

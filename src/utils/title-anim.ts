@@ -316,3 +316,37 @@ export const textInvertWithScrollAnimation = () => {
   });
 }
 
+export const textBoldScrollAnimation = () => {
+  const textElements = document.querySelectorAll(".text-invert-scroll");
+  if (textElements.length === 0) return;
+
+  // Detect dark mode
+  const isDarkMode = document.body.classList.contains("dark");
+  const lightColor = isDarkMode ? "rgba(255, 255, 255, 0.4)" : "rgba(17, 17, 17, 0.4)";
+  const darkColor = isDarkMode ? "rgba(255, 255, 255, 1)" : "rgba(17, 17, 17, 1)";
+
+  textElements.forEach((element) => {
+    const split = new SplitText(element, { type: "words" });
+    
+    split.words.forEach((word: any) => {
+      gsap.fromTo(word, 
+        {
+          fontWeight: 400,
+          color: lightColor,
+        },
+        {
+          fontWeight: 700,
+          color: darkColor,
+          ease: "none",
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 85%',
+            end: 'bottom 60%',
+            scrub: 1,
+          }
+        }
+      );
+    });
+  });
+}
+

@@ -4,7 +4,7 @@ import HeaderTwo from "@/layout/header/header-two";
 import MainWrapper from "@/components/wrapper/main-wrapper";
 import ContactWrapper from "./_components/contact-wrapper";
 import ContactArea from "./_components/contact-area";
-import FooterInner from "@/layout/footer/footer-inner";
+import Footer from "@/layout/footer/footer-one";
 import PageTitle from "@/components/common/page-title";
 
 /**
@@ -45,7 +45,7 @@ export default function ContactPage() {
           </main>
 
           {/* Footer area start */}
-          <FooterInner />
+          <Footer />
           {/* Footer area end */}
         </ContactWrapper>
       </MainWrapper>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ApiResponse } from "@/types/homeData";
 import HeaderTwo from "@/layout/header/header-two";
 import MainWrapper from "@/components/wrapper/main-wrapper";
-import FooterInner from "@/layout/footer/footer-inner";
+import Footer from "@/layout/footer/footer-one";
 import PortfolioWrapper from "./portfolio-wrapper";
 import PageTitle from "@/components/common/page-title";
 import WorkAreaEight from "@/components/work/work-area-8";
@@ -28,6 +28,21 @@ export default function PortfolioPageContent() {
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
+
+        // Check if response is JSON before parsing
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const text = await response.text();
+          // If response starts with HTML, it's an error page
+          if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
+            throw new Error("API returned HTML error page");
+          }
+          // Try to parse as JSON anyway if it's not HTML
+          const jsonResponse: ApiResponse = JSON.parse(text);
+          setData(jsonResponse);
+          return;
+        }
+
         const jsonResponse: ApiResponse = await response.json();
         setData(jsonResponse);
       } catch (err) {
@@ -95,7 +110,7 @@ export default function PortfolioPageContent() {
           </main>
 
           {/* Footer area start */}
-          <FooterInner />
+          <Footer />
           {/* Footer area end */}
         </PortfolioWrapper>
       </MainWrapper>

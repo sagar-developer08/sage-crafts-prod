@@ -64,19 +64,26 @@ const WorkArea = ({allProjects,portfolioItem,recentWork}:WorkAreaProps) => {
                   <div key={project._id} className="work-box">
                     <div className="thumb">
                       <div className="image scale" data-cursor-text="View Project">
-                        <Link href={href}>
+                        <Link href={href} style={{ display: 'block', width: '100%' }}>
                           {project.imageUrl ? (
-                            <Image
-                              src={project.imageUrl}
-                              alt={project.title ?? 'project image'}
-                              width={840}
-                              height={580}
-                              style={{ height: "auto" }}
-                            />
+                            <div style={{ 
+                              position: 'relative', 
+                              width: '100%', 
+                              aspectRatio: '840/580',
+                              overflow: 'hidden'
+                            }}>
+                              <Image
+                                src={project.imageUrl}
+                                alt={project.title ?? 'project image'}
+                                fill
+                                style={{ objectFit: 'cover' }}
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                              />
+                            </div>
                           ) : (
                             <div
                               className="image-placeholder"
-                              style={{ width: 840, height: 580, background: '#f3f3f3' }}
+                              style={{ width: '100%', aspectRatio: '840/580', background: '#f3f3f3' }}
                               aria-hidden="true"
                             />
                           )}
