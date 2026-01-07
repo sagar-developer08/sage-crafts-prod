@@ -18,9 +18,11 @@ import Footer from "@/layout/footer/footer-one";
 import Header from "@/layout/header/header-one";
 import DigitalAgencyWrapper from "./digital-agency-wrapper";
 import CustomCursor from "@/components/common/custom-cursor";
+import PageLoader from "@/components/common/page-loader";
 
 export default function HomePage() {
   const [data, setData] = useState<ApiResponse | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,13 +57,20 @@ export default function HomePage() {
         setData(jsonResponse);
       } catch (error) {
         console.error('Error fetching home data:', error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
   }, []);
 
-  if (!data) {
-    return null; // or a loading spinner
+  if (loading || !data) {
+    return (
+      <>
+        <CustomCursor />
+        <PageLoader fullScreen={true} />
+      </>
+    );
   }
 
   const heroData = data?.home?.hero;
