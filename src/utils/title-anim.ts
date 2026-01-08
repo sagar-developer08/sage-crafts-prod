@@ -5,7 +5,8 @@ import { SplitText } from "gsap/SplitText";
 export const titleAnimation = () => {
   const mm = gsap.matchMedia();
 
-  mm.add("(min-width: 100px)", () => {
+  // Desktop and larger tablets (992px and above)
+  mm.add("(min-width: 992px)", () => {
     if (document.querySelectorAll(".hero-area").length > 0) {
       // Detect dark mode via body class
       const isDarkMode = document.body.classList.contains("dark");
@@ -59,8 +60,77 @@ export const titleAnimation = () => {
       });
     }
   });
-  
-}
+
+  // Tablets (768px to 991px)
+  mm.add("(min-width: 768px) and (max-width: 991px)", () => {
+    if (document.querySelectorAll(".hero-area").length > 0) {
+      const isDarkMode = document.body.classList.contains("dark");
+      const bigtextColor = isDarkMode ? "#FFFFFF" : "#111111";
+      const ab2 = gsap.timeline({
+        duration: 3,
+        scrollTrigger: {
+          trigger: ".hero-area",
+          scrub: 1.5,
+          start: "top 100%",
+          end: "bottom 20%",
+        },
+      });
+      ab2.to(".big-text-wrapper .big-text", {
+        scale: 0.4,
+        color: bigtextColor,
+        duration: 1.5,
+        y: "70%",
+        transformOrigin: "bottom center",
+      });
+      gsap.to([".about-area .text-wrapper", ".about-area .btn-wrapper"], {
+        y: "20",
+        delay: 1,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: ".about-area",
+          start: "top 60%",
+          end: "center center",
+          scrub: 1.5,
+        },
+      });
+    }
+  });
+
+  // Mobile devices (below 768px)
+  mm.add("(max-width: 767px)", () => {
+    if (document.querySelectorAll(".hero-area").length > 0) {
+      const isDarkMode = document.body.classList.contains("dark");
+      const bigtextColor = isDarkMode ? "#FFFFFF" : "#111111";
+      const ab2 = gsap.timeline({
+        duration: 2,
+        scrollTrigger: {
+          trigger: ".hero-area",
+          scrub: 1,
+          start: "top 100%",
+          end: "bottom 30%",
+        },
+      });
+      ab2.to(".big-text-wrapper .big-text", {
+        scale: 0.35,
+        color: bigtextColor,
+        duration: 1,
+        y: "50%",
+        transformOrigin: "bottom center",
+      });
+      gsap.to([".about-area .text-wrapper", ".about-area .btn-wrapper"], {
+        y: "10",
+        delay: 0.5,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: ".about-area",
+          start: "top 70%",
+          end: "center center",
+          scrub: 1,
+        },
+      });
+    }
+  });
+};
 
 export const fadeAnimation = () => {
   const fadeArrayItems = document.querySelectorAll<HTMLElement>(".fade-anim");
