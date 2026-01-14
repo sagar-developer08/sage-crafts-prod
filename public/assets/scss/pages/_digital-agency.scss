@@ -222,6 +222,10 @@
             width: 130px;
             height: 130px;
             padding: 0;
+
+            @media #{$sm} {
+            display: none;;
+        }
         }
     }
 
