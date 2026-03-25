@@ -15,6 +15,7 @@ import client_19 from "@/assets/imgs/client/client-19.webp";
 import client_20 from "@/assets/imgs/client/client-20.webp";
 import client_21 from "@/assets/imgs/client/client-21.webp";
 import client_22 from "@/assets/imgs/client/client-22.webp";
+import { resolveClientImageSrc } from "./image-src";
 
 type Props = {
   isHome?: boolean;
@@ -58,7 +59,7 @@ export default function ClientCapsules({isHome, companyNames}: Props) {
           <p key={client.id} data-t-throwable-el="">
             <span className={`client-box ${client.bgTheme ? "bg-theme" : ""}`}>
               <Image 
-                src={client.src} 
+                src={resolveClientImageSrc(client.src)} 
                 alt="company logo" 
                 width={200}
                 height={200}

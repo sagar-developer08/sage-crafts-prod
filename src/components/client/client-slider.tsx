@@ -12,6 +12,7 @@ import client_5 from "@/assets/imgs/client/client-5.webp";
 import client_6 from "@/assets/imgs/client/client-6.webp";
 import client_7 from "@/assets/imgs/client/client-7.webp";
 import client_8 from "@/assets/imgs/client/client-8.webp";
+import { resolveClientImageSrc } from "./image-src";
 
 const defaultClientImages = [
   client_1,
@@ -54,7 +55,7 @@ export default function ClientSlider({ companyNames }: ClientSliderProps) {
         <SwiperSlide key={idx} style={{ width: "auto" }}>
           <div className="client-box">
             <Image 
-              src={src} 
+              src={resolveClientImageSrc(src)} 
               alt="client" 
               width={140}
               height={140}

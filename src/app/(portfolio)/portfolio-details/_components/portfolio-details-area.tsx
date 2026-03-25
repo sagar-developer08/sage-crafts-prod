@@ -552,7 +552,8 @@ export default function PortfolioDetailsArea({ project }: Props) {
                 width={1200}
                 height={800}
                 data-speed="0.8"
-                style={imgStyle}
+                className="w-100"
+                style={galleryImgStyle}
               />
             </div>
           </div>
