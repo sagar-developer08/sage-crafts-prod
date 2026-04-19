@@ -1364,8 +1364,9 @@
         padding-bottom: 50px;
         margin-top: 50px;
         display: grid;
-        gap: 30px 60px;
-        grid-template-columns: 1fr 660px;
+        align-items: center;
+        gap: 24px 40px;
+        grid-template-columns: auto minmax(260px, 540px);
 
         @media #{$xxl} {
             padding-top: 40px;
@@ -1374,29 +1375,26 @@
         }
 
         @media #{$xl} {
-            grid-template-columns: 1fr 580px;
+            grid-template-columns: auto minmax(260px, 480px);
+            gap: 24px 36px;
         }
 
         @media #{$lg} {
-            grid-template-columns: 1fr 470px;
+            grid-template-columns: auto minmax(240px, 420px);
+            gap: 20px 32px;
         }
 
         @media #{$md} {
-            grid-template-columns: 1fr 430px;
+            grid-template-columns: 1fr;
+            align-items: start;
         }
 
         @media #{$sm} {
             grid-template-columns: 1fr;
         }
 
-        .footer-left-section {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-
-            .footer-widget-box.newsletter {
-                margin-top: 0;
-            }
+        .footer-logo {
+            margin-top: 0;
         }
 
         .info-text {
@@ -1489,8 +1487,8 @@
     .footer-widget-wrapper {
         display: grid;
         gap: 30px 170px;
-        grid-template-columns: auto auto;
-        justify-content: start;
+        grid-template-columns: 1fr auto auto auto;
+        justify-content: space-between;
 
         @media #{$xl} {
             gap: 30px 130px;
@@ -1501,7 +1499,7 @@
         }
 
         @media #{$md} {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
         }
 
         @media #{$sm} {

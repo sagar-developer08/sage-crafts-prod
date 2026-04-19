@@ -345,6 +345,7 @@ const Sequel_sans_medium = localFont({
 });
 
 import { getSeoSettings } from '@/utils/seoSettings';
+import GlobalLoader from '@/components/common/global-loader';
 
 // Fetch SEO settings for metadata
 const seoSettings = await getSeoSettings();
@@ -440,7 +441,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${dm_sans.variable} ${instrument_sans.variable} ${bdogrotesk.variable} ${tartuffo.variable} ${tartufffo_trial.variable} ${times_now.variable} ${thunder.variable} ${Sequel_sans_roman.variable} ${Sequel_sans_medium.variable}`}>
-        {children}
+        <GlobalLoader>
+          {children}
+        </GlobalLoader>
       </body>
     </html>
   );

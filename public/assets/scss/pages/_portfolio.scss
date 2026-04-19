@@ -2,6 +2,20 @@
 @use "../utils/mixin" as *;
 @use "../utils/variables" as *;
 
+/* Portfolio page spacing */
+.portfolio-spacing {
+    padding-top: 80px;
+    padding-bottom: 0;
+
+    @media #{$md} {
+        padding-top: 60px;
+    }
+
+    @media #{$sm} {
+        padding-top: 50px;
+    }
+}
+
 .body-portfolio-agency {
     .header-area-7 {
         position: fixed;
@@ -1184,5 +1198,100 @@
     .swiper-pagination-bullet-active::after {
         opacity: 1;
         width: 100%;
+    }
+}
+
+/* portfolio: logo + product marquee (above footer) */
+.portfolio-product-marquee {
+    background-color: #111111;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 48px 0 52px;
+
+    @media #{$md} {
+        padding: 40px 0 44px;
+    }
+
+    &__inner {
+        display: grid;
+        align-items: center;
+        gap: 28px 40px;
+        grid-template-columns: auto minmax(0, 1fr);
+
+        @media #{$sm} {
+            grid-template-columns: 1fr;
+            gap: 28px;
+        }
+    }
+
+    &__logo {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+
+        @media #{$sm} {
+            justify-content: center;
+        }
+    }
+
+    &__logo-link {
+        display: inline-flex;
+        align-items: center;
+        line-height: 0;
+    }
+
+    &__logo-img {
+        max-width: 200px;
+        width: auto !important;
+        height: auto !important;
+
+        @media #{$md} {
+            max-width: 160px;
+        }
+    }
+
+    &__track {
+        min-width: 0;
+        overflow: hidden;
+        mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            black 3%,
+            black 97%,
+            transparent 100%
+        );
+
+        @media #{$sm} {
+            mask-image: none;
+        }
+    }
+
+    &__swiper {
+        width: 100%;
+        overflow: visible;
+    }
+
+    &__slide {
+        width: auto !important;
+    }
+
+    &__pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 22px;
+        border-radius: 100px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: rgba(252, 247, 243, 0.92);
+        font-family: var(--font_sequelsansromanbody, system-ui, sans-serif);
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+        line-height: 1.2;
+
+        @media #{$md} {
+            font-size: 14px;
+            padding: 10px 18px;
+        }
     }
 }

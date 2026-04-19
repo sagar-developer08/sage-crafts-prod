@@ -7,34 +7,35 @@ interface PageLoaderProps {
 }
 
 /**
- * Unique morphing blob loader with gradient effects
- * Modern, visually appealing loader that matches the creative agency aesthetic
+ * Tech-inspired loader with hexagonal circuit patterns
+ * Modern, sophisticated loader matching Sage Craft's tech company aesthetic
  */
 export default function PageLoader({ fullScreen = true }: PageLoaderProps) {
   return (
     <div className={`page-loader ${fullScreen ? "page-loader--fullscreen" : ""}`}>
       <div className="page-loader__container">
-        {/* Main morphing blob */}
-        <div className="page-loader__blob">
-          <div className="page-loader__blob-inner"></div>
+        {/* Central hexagon with circuit pattern */}
+        <div className="page-loader__hexagon">
+          <div className="page-loader__hexagon-inner">
+            <div className="page-loader__circuit"></div>
+            <div className="page-loader__core"></div>
+          </div>
         </div>
         
-        {/* Orbiting particles */}
-        <div className="page-loader__orbit">
-          <div className="page-loader__particle page-loader__particle--1"></div>
-          <div className="page-loader__particle page-loader__particle--2"></div>
-          <div className="page-loader__particle page-loader__particle--3"></div>
-        </div>
+        {/* Rotating rings */}
+        <div className="page-loader__ring page-loader__ring--outer"></div>
+        <div className="page-loader__ring page-loader__ring--inner"></div>
+        
+        {/* Data streams */}
+        <div className="page-loader__stream page-loader__stream--1"></div>
+        <div className="page-loader__stream page-loader__stream--2"></div>
+        <div className="page-loader__stream page-loader__stream--3"></div>
+        <div className="page-loader__stream page-loader__stream--4"></div>
         
         {/* Loading text */}
         <div className="page-loader__text">
-          <span className="page-loader__text-char">L</span>
-          <span className="page-loader__text-char">O</span>
-          <span className="page-loader__text-char">A</span>
-          <span className="page-loader__text-char">D</span>
-          <span className="page-loader__text-char">I</span>
-          <span className="page-loader__text-char">N</span>
-          <span className="page-loader__text-char">G</span>
+          <span className="page-loader__brand">SAGE</span>
+          <span className="page-loader__status">LOADING...</span>
         </div>
       </div>
       
@@ -53,7 +54,7 @@ export default function PageLoader({ fullScreen = true }: PageLoaderProps) {
           left: 0;
           width: 100%;
           height: 100vh;
-          background: #0a0a0a;
+          background: linear-gradient(135deg, #111111 0%, #171717 50%, #111111 100%);
           z-index: 9999;
         }
 
@@ -66,142 +67,217 @@ export default function PageLoader({ fullScreen = true }: PageLoaderProps) {
           justify-content: center;
         }
 
-        /* Morphing blob */
-        .page-loader__blob {
+        /* Central Hexagon */
+        .page-loader__hexagon {
           position: absolute;
-          width: 120px;
-          height: 120px;
-          filter: blur(40px);
-          animation: morph 8s ease-in-out infinite;
+          width: 80px;
+          height: 80px;
+          z-index: 3;
         }
 
-        .page-loader__blob-inner {
+        .page-loader__hexagon-inner {
           width: 100%;
           height: 100%;
-          background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.8) 0%,
-            rgba(255, 255, 255, 0.4) 50%,
-            rgba(255, 255, 255, 0.6) 100%
-          );
-          border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-          animation: morph-shape 8s ease-in-out infinite;
+          position: relative;
+          background: linear-gradient(135deg, #385852, #2a4339);
+          clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+          box-shadow: 
+            0 0 20px rgba(56, 88, 82, 0.5),
+            inset 0 0 20px rgba(56, 88, 82, 0.2);
+          animation: hexagon-pulse 2s ease-in-out infinite;
         }
 
-        /* Orbiting particles */
-        .page-loader__orbit {
+        .page-loader__circuit {
           position: absolute;
-          width: 160px;
-          height: 160px;
-          animation: rotate 4s linear infinite;
-        }
-
-        .page-loader__particle {
-          position: absolute;
-          width: 8px;
-          height: 8px;
-          background: rgba(255, 255, 255, 0.9);
-          border-radius: 50%;
-          box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-
-        .page-loader__particle--1 {
-          top: 0;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-
-        .page-loader__particle--2 {
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-
-        .page-loader__particle--3 {
           top: 50%;
-          right: 0;
-          transform: translateY(-50%);
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 60%;
+          height: 60%;
+          background: radial-gradient(circle, #385852 2px, transparent 2px);
+          background-size: 8px 8px;
+          opacity: 0.6;
+          animation: circuit-glow 1.5s ease-in-out infinite alternate;
         }
 
-        /* Loading text */
+        .page-loader__core {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 12px;
+          height: 12px;
+          background: #fff;
+          border-radius: 50%;
+          box-shadow: 0 0 10px #385852;
+          animation: core-pulse 1s ease-in-out infinite;
+        }
+
+        /* Rotating Rings */
+        .page-loader__ring {
+          position: absolute;
+          border: 2px solid transparent;
+          border-radius: 50%;
+          animation: rotate 3s linear infinite;
+        }
+
+        .page-loader__ring--outer {
+          width: 140px;
+          height: 140px;
+          border-top: 2px solid #385852;
+          border-right: 2px solid rgba(56, 88, 82, 0.3);
+          animation-duration: 4s;
+        }
+
+        .page-loader__ring--inner {
+          width: 100px;
+          height: 100px;
+          border-left: 2px solid #385852;
+          border-bottom: 2px solid rgba(56, 88, 82, 0.5);
+          animation-duration: 2s;
+          animation-direction: reverse;
+        }
+
+        /* Data Streams */
+        .page-loader__stream {
+          position: absolute;
+          background: linear-gradient(90deg, transparent, #385852, transparent);
+          border-radius: 2px;
+          animation: data-flow 2s ease-in-out infinite;
+        }
+
+        .page-loader__stream--1 {
+          width: 60px;
+          height: 2px;
+          top: 30%;
+          left: -30px;
+          animation-delay: 0s;
+        }
+
+        .page-loader__stream--2 {
+          width: 40px;
+          height: 2px;
+          top: 70%;
+          right: -20px;
+          animation-delay: 0.5s;
+        }
+
+        .page-loader__stream--3 {
+          width: 2px;
+          height: 50px;
+          left: 20%;
+          top: -25px;
+          animation-delay: 1s;
+        }
+
+        .page-loader__stream--4 {
+          width: 2px;
+          height: 35px;
+          right: 25%;
+          bottom: -17px;
+          animation-delay: 1.5s;
+        }
+
+        /* Loading Text */
         .page-loader__text {
           position: absolute;
-          bottom: -40px;
+          bottom: -60px;
           left: 50%;
           transform: translateX(-50%);
-          display: flex;
-          gap: 4px;
+          text-align: center;
+        }
+
+        .page-loader__brand {
+          display: block;
           font-family: var(--font_dmsans, sans-serif);
-          font-weight: 600;
-          font-size: 14px;
+          font-weight: 700;
+          font-size: 18px;
+          letter-spacing: 3px;
+          color: #385852;
+          margin-bottom: 8px;
+          animation: brand-glow 2s ease-in-out infinite alternate;
+        }
+
+        .page-loader__status {
+          display: block;
+          font-family: var(--font_dmsans, sans-serif);
+          font-weight: 400;
+          font-size: 12px;
           letter-spacing: 2px;
-          color: rgba(255, 255, 255, 0.8);
+          color: rgba(255, 255, 255, 0.6);
+          animation: status-dots 1.5s ease-in-out infinite;
         }
-
-        .page-loader__text-char {
-          display: inline-block;
-          animation: text-bounce 1.4s ease-in-out infinite;
-        }
-
-        .page-loader__text-char:nth-child(1) { animation-delay: 0s; }
-        .page-loader__text-char:nth-child(2) { animation-delay: 0.1s; }
-        .page-loader__text-char:nth-child(3) { animation-delay: 0.2s; }
-        .page-loader__text-char:nth-child(4) { animation-delay: 0.3s; }
-        .page-loader__text-char:nth-child(5) { animation-delay: 0.4s; }
-        .page-loader__text-char:nth-child(6) { animation-delay: 0.5s; }
-        .page-loader__text-char:nth-child(7) { animation-delay: 0.6s; }
 
         /* Animations */
-        @keyframes morph {
-          0%, 100% {
-            transform: translate(0, 0) scale(1);
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-          }
-          25% {
-            transform: translate(20px, -20px) scale(1.1);
-            border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-          }
-          50% {
-            transform: translate(-20px, 20px) scale(0.9);
-            border-radius: 70% 30% 50% 50% / 30% 50% 70% 50%;
-          }
-          75% {
-            transform: translate(10px, 10px) scale(1.05);
-            border-radius: 40% 60% 30% 60% / 60% 30% 60% 40%;
-          }
-        }
-
-        @keyframes morph-shape {
-          0%, 100% {
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-          }
-          25% {
-            border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-          }
-          50% {
-            border-radius: 70% 30% 50% 50% / 30% 50% 70% 50%;
-          }
-          75% {
-            border-radius: 40% 60% 30% 60% / 60% 30% 60% 40%;
-          }
-        }
-
         @keyframes rotate {
-          from {
-            transform: rotate(0deg);
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        @keyframes hexagon-pulse {
+          0%, 100% {
+            transform: scale(1);
+            box-shadow: 
+              0 0 20px rgba(56, 88, 82, 0.5),
+              inset 0 0 20px rgba(56, 88, 82, 0.2);
           }
-          to {
-            transform: rotate(360deg);
+          50% {
+            transform: scale(1.05);
+            box-shadow: 
+              0 0 30px rgba(56, 88, 82, 0.8),
+              inset 0 0 30px rgba(56, 88, 82, 0.3);
           }
         }
 
-        @keyframes text-bounce {
+        @keyframes circuit-glow {
+          0% { opacity: 0.4; }
+          100% { opacity: 0.8; }
+        }
+
+        @keyframes core-pulse {
           0%, 100% {
-            transform: translateY(0);
-            opacity: 0.6;
+            transform: translate(-50%, -50%) scale(1);
+            box-shadow: 0 0 10px #385852;
           }
           50% {
-            transform: translateY(-8px);
+            transform: translate(-50%, -50%) scale(1.2);
+            box-shadow: 0 0 20px #385852, 0 0 40px rgba(56, 88, 82, 0.5);
+          }
+        }
+
+        @keyframes data-flow {
+          0% {
+            opacity: 0;
+            transform: translateX(-100%);
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+            transform: translateX(100%);
+          }
+        }
+
+        @keyframes brand-glow {
+          0% {
+            text-shadow: 0 0 5px rgba(56, 88, 82, 0.5);
+          }
+          100% {
+            text-shadow: 
+              0 0 10px rgba(56, 88, 82, 0.8),
+              0 0 20px rgba(56, 88, 82, 0.4);
+          }
+        }
+
+        @keyframes status-dots {
+          0%, 20% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.5;
+          }
+          80%, 100% {
             opacity: 1;
           }
         }
@@ -213,20 +289,32 @@ export default function PageLoader({ fullScreen = true }: PageLoaderProps) {
             height: 150px;
           }
 
-          .page-loader__blob {
-            width: 90px;
-            height: 90px;
-            filter: blur(30px);
+          .page-loader__hexagon {
+            width: 60px;
+            height: 60px;
           }
 
-          .page-loader__orbit {
-            width: 120px;
-            height: 120px;
+          .page-loader__ring--outer {
+            width: 110px;
+            height: 110px;
+          }
+
+          .page-loader__ring--inner {
+            width: 80px;
+            height: 80px;
+          }
+
+          .page-loader__brand {
+            font-size: 16px;
+            letter-spacing: 2px;
+          }
+
+          .page-loader__status {
+            font-size: 11px;
           }
 
           .page-loader__text {
-            font-size: 12px;
-            bottom: -35px;
+            bottom: -50px;
           }
         }
       `}</style>

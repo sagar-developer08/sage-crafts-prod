@@ -7,11 +7,9 @@ import ClientArea from "@/components/client/client-area";
 import CtaArea from "@/components/cta/cta-area";
 import FunFactArea from "@/components/fun-fact/fun-fact-area";
 import HeroOne from "@/components/hero/hero-one";
-import ParallaxImg from "@/components/parallax-img/parallax-img";
 import ProductivityArea from "@/components/productivity/productivity-area";
 import ServiceArea from "@/components/services/service-area";
 import TextSlider from "@/components/text-slider/text-slider";
-import VideoBox from "@/components/video/video-box";
 import WorkArea from "@/components/work/work-area";
 import MainWrapper from "@/components/wrapper/main-wrapper";
 import Footer from "@/layout/footer/footer-one";
@@ -75,8 +73,7 @@ export default function HomePage() {
 
   const heroData = data?.home?.hero;
   const aboutData = data?.home?.about;
-  const videoUrl = data?.home?.video?.videoUrl ?? "https://rrdevs.net/project-video/group-meeting.mp4";
-  
+
   // Extract all projects from portfolio array
   console.log("data in home page", data?.portfolio);
   const allProjects = data?.portfolio?.flatMap(portfolioItem => portfolioItem.projects) ?? [];
@@ -93,8 +90,6 @@ export default function HomePage() {
 
   const clientSection = data?.home?.clientSection;
   console.log("clientSection", clientSection);
-
-  const parallax_img = data?.home?.parallaxImage ?? [];
 
   return (
     <>
@@ -117,10 +112,6 @@ export default function HomePage() {
             {/* About area start */}
             {aboutData && <AboutOne about={aboutData} />}
             {/* About area end */}
-
-            {/* Video area start */}
-            <VideoBox videoUrl={videoUrl} />
-            {/* Video area end */}
 
             {/* Work area start */}
             <section className="work-area">
@@ -153,10 +144,6 @@ export default function HomePage() {
             {/* Productivity area start */}
             <ProductivityArea />
             {/* Productivity area end */}
-
-            {/* Parallax image start */}
-            <ParallaxImg parallax_img={parallax_img} />
-            {/* Parallax image end */}
           </main>
 
           {/* Footer area start */}

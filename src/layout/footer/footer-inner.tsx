@@ -1,9 +1,9 @@
 "use client";
-import React, { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import logo from '@/assets/imgs/logo/sagecrafts-logo.png';
-import icon from '@/assets/imgs/icon/icon-1.webp';
+import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import logo from "@/assets/imgs/logo/sagecrafts-logo.png";
+import icon from "@/assets/imgs/icon/icon-1.webp";
 
 interface NavItem {
   title: string;
@@ -11,64 +11,52 @@ interface NavItem {
 }
 
 const companyLinks: NavItem[] = [
-  { title: 'agency', link: '#' },
-  { title: 'Solutions', link: '#' },
-  { title: 'Community', link: '#' },
-  { title: 'Work', link: '#' },
-  { title: 'Contact', link: '#' },
+  { title: "agency", link: "#" },
+  { title: "Solutions", link: "#" },
+  { title: "Community", link: "#" },
+  { title: "Work", link: "#" },
+  { title: "Contact", link: "#" },
+];
+
+const socialLinks: NavItem[] = [
+  { title: "Facebook", link: "#" },
+  { title: "Twitter", link: "#" },
+  { title: "Dribbble", link: "#" },
+  { title: "Instagram", link: "#" },
+  { title: "Awwwards", link: "#" },
+  { title: "YouTube", link: "#" },
 ];
 
 const officeLinks: NavItem[] = [
-  { title: 'Mumbai, India', link: '#' },
+  { title: "Mumbai, India", link: "#" },
 ];
 
 const FooterInner: React.FC = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   const handleSubscribe = () => {
-    // Handle subscription logic here (e.g., API call)
     alert(`Subscribed with email: ${email}`);
-    setEmail(''); // Clear the input field after subscribing
+    setEmail("");
   };
 
   return (
     <footer className="footer-area-inner-page section-spacing-top">
       <div className="container large">
         <div className="footer-top-inner">
-          <div className="footer-left-section">
-            <div className="footer-logo">
-              <Link href="/">
-                <Image src={logo} alt="site-logo" style={{ height: "auto" }} />
-              </Link>
-            </div>
-            <div className="footer-widget-box newsletter">
-              <div className="subscribe-form">
-                <div className="input-field">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <button type="button" className="subscribe-btn" onClick={handleSubscribe}>
-                    <Image src={icon} alt="image" />
-                  </button>
-                </div>
-              </div>
-              <div className="subscription-text">
-                <div className="text-wrapper">
-                  <p className="text">
-                    By subscribing you agree with our{' '}
-                    <a href="#">Privacy Policy</a>
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="footer-logo">
+            <Link href="/">
+              <Image
+                src={logo}
+                alt="Sage Crafts"
+                style={{ height: "auto", width: "100%" }}
+              />
+            </Link>
           </div>
           <div className="info-text">
             <div className="text-wrapper">
               <p className="text">
-                Sage Craft is a startup digital agency of design, development and marketing that works friendly with global client
+                Sage Crafts is a startup digital agency of design, development
+                and marketing that works friendly with global client
               </p>
             </div>
             <div className="info-link">
@@ -78,10 +66,47 @@ const FooterInner: React.FC = () => {
         </div>
         <div className="footer-widget-wrapper-box">
           <div className="footer-widget-wrapper">
+            <div className="footer-widget-box newsletter">
+              <div className="subscribe-form">
+                <div className="input-field">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <button
+                    type="button"
+                    className="subscribe-btn"
+                    onClick={handleSubscribe}
+                  >
+                    <Image src={icon} alt="" />
+                  </button>
+                </div>
+              </div>
+              <div className="subscription-text">
+                <div className="text-wrapper">
+                  <p className="text">
+                    By subscribing you agree with our{" "}
+                    <a href="#">Privacy Policy</a>
+                  </p>
+                </div>
+              </div>
+            </div>
             <div className="footer-widget-box">
               <h2 className="title">Company</h2>
               <ul className="footer-nav-list">
                 {companyLinks.map((item, index) => (
+                  <li key={index}>
+                    <Link href={item.link}>{item.title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="footer-widget-box">
+              <h2 className="title">Social</h2>
+              <ul className="footer-nav-list">
+                {socialLinks.map((item, index) => (
                   <li key={index}>
                     <Link href={item.link}>{item.title}</Link>
                   </li>
@@ -105,7 +130,7 @@ const FooterInner: React.FC = () => {
         <div className="copyright-area-inner">
           <div className="copyright-text">
             <p className="text">
-              © {new Date().getFullYear()} <a href="https://themeforest.net/user/ravextheme">RavexTheme.</a> All right reserved
+              © {new Date().getFullYear()} Sage Crafts. All rights reserved
             </p>
           </div>
         </div>

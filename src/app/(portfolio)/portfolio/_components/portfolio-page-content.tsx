@@ -8,6 +8,7 @@ import Footer from "@/layout/footer/footer-one";
 import PortfolioWrapper from "./portfolio-wrapper";
 import PageTitle from "@/components/common/page-title";
 import WorkAreaEight from "@/components/work/work-area-8";
+import PortfolioProductMarquee from "@/components/portfolio/portfolio-product-marquee";
 import CustomCursor from "@/components/common/custom-cursor";
 import PageLoader from "@/components/common/page-loader";
 
@@ -108,6 +109,11 @@ export default function PortfolioPageContent() {
             <WorkAreaEight portfolio={portfolioItems} />
             {/* portfolio area end */}
           </main>
+
+          {/* Spacing between portfolio grid and carousel */}
+          <div className="portfolio-spacing">
+            <PortfolioProductMarquee />
+          </div>
 
           {/* Footer area start */}
           <Footer />
