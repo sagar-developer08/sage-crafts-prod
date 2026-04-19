@@ -1120,6 +1120,9 @@ video.video-area {
         >* {
             position: absolute;
             display: inline-block;
+            margin: 0;
+            padding: 0;
+            line-height: 0;
             margin-bottom: 0;
             left: 0;
             top: 0;
@@ -1130,12 +1133,12 @@ video.video-area {
     }
 
     .client-box {
+        display: inline-flex;
+        justify-content: center;
         width: 215px;
         height: 100px;
         padding: 10px 20px;
         background-color: var(--primary);
-        display: inline-flex;
-        justify-content: center;
         align-items: center;
         border-radius: 100px;
         transform: translate(-50%, -50%) rotate(0.00rad);

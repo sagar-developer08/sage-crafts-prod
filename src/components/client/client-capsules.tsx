@@ -56,7 +56,7 @@ export default function ClientCapsules({isHome, companyNames}: Props) {
     <div className="client-capsule-wrapper-box" data-t-throwable-scene="true">
       <div className="client-capsule-wrapper">
         {clients.map((client) => (
-          <p key={client.id} data-t-throwable-el="">
+          <div key={client.id} data-t-throwable-el="">
             <span className={`client-box ${client.bgTheme ? "bg-theme" : ""}`}>
               <Image 
                 src={resolveClientImageSrc(client.src)} 
@@ -66,7 +66,7 @@ export default function ClientCapsules({isHome, companyNames}: Props) {
                 style={{ height: "auto", width: "auto" }} 
               />
             </span>
-          </p>
+          </div>
         ))}
       </div>
     </div>

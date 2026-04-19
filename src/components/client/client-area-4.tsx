@@ -49,12 +49,8 @@ type ClientAreaFourProps = {
 const defaultHeading =
   "Client: Helping brands to grow and say their success stories to the world.";
 
-const defaultDescription =
-  "We’re a great team of creatives with a strongest capabilities to helping progressive fields achieve their goals. With the best talent on every project done successfully";
-
 export default function ClientAreaFour({ clientSection }: ClientAreaFourProps) {
-  const heading = defaultHeading; // no heading in schema yet, keep static
-  const description = clientSection?.descriptionText || defaultDescription;
+  const heading = defaultHeading;
 
   return (
     <section className="client-area-service-page">
@@ -68,13 +64,11 @@ export default function ClientAreaFour({ clientSection }: ClientAreaFourProps) {
                 </h2>
               </div>
             </div>
-            <div className="text-wrapper">
-              <p className="text">{description}</p>
-            </div>
           </div>
 
-          {/* Client capsules (still uses its own existing logic) */}
-          <ClientCapsules />
+          <ClientCapsules
+            companyNames={clientSection?.companyNames}
+          />
 
           <div className="lines-wrapper">
             {Array(8)

@@ -1,5 +1,6 @@
 "use client";
 import { FormEvent, useState } from "react";
+import Image from "next/image";
 
 export default function ContactArea() {
   const [budget, setBudget] = useState("");
@@ -101,7 +102,7 @@ export default function ContactArea() {
     }
   };
   return (
-    <section className="contact-area-contact-page">
+    <section className="contact-area-contact-page" style={{ marginBottom: "80px" }}>
       <div className="container large">
         <div className="contact-area-contact-page-inner section-spacing-top">
           <div className="section-header fade-anim">
@@ -128,16 +129,19 @@ export default function ContactArea() {
                   </a>
                 </p>
               </div>
-              <div className="contact-social">
-                <p className="title">Follow</p>
-                <div className="social-links">
-                  <a href="#">Facebook</a>
-                  <a href="#">Twitter</a>
-                  <a href="#">LinkedIn</a>
-                  <a href="#">Instagram</a>
-                  <a href="#">Dribbble</a>
-                  <a href="#">Behance</a>
-                </div>
+              <div className="contact-consultation-gif" style={{ marginTop: "40px" }}>
+                <Image 
+                  src="/assets/free-consultation.png" 
+                  alt="Free Consultation" 
+                  width={300}
+                  height={300}
+                  style={{ 
+                    maxWidth: "300px", 
+                    width: "100%", 
+                    height: "auto",
+                    borderRadius: "12px"
+                  }}
+                />
               </div>
             </div>
             <div className="contact-wrap">

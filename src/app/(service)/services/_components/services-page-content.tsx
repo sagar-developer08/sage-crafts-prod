@@ -7,6 +7,7 @@ import MainWrapper from "@/components/wrapper/main-wrapper";
 import Footer from "@/layout/footer/footer-one";
 import PageTitle from "@/components/common/page-title";
 import ServiceAreaSix from "@/components/services/service-area-6";
+import ClientAreaFour from "@/components/client/client-area-4";
 import ServiceWrapper from "./service-wrapper";
 import PageLoader from "@/components/common/page-loader";
 
@@ -73,6 +74,7 @@ export default function ServicesPageContent() {
     data.services && data.services.length > 0 ? data.services[0] : undefined;
 
   const serviceSection = data?.home?.serviceSection;
+  const clientSection = data?.home?.clientSection;
 
   return (
     <>
@@ -93,6 +95,8 @@ export default function ServicesPageContent() {
               serviceInfo={serviceInfo}
               serviceSection={serviceSection}
             />
+
+            <ClientAreaFour clientSection={clientSection} />
           </main>
 
           <Footer />

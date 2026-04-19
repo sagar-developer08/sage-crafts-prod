@@ -105,7 +105,8 @@ export const throwableAnimation = async () => {
         createBodies() {
             this.DOM.throwables.forEach(((t, e) => {
                 const i = t.querySelector("span"),
-                    s = t.getBoundingClientRect(),
+                    measureEl = i instanceof HTMLElement ? i : t,
+                    s = measureEl.getBoundingClientRect(),
                     n = gsap.quickSetter(t, "x", "px"),
                     o = gsap.quickSetter(t, "y", "px"),
                     h = gsap.utils.random(.2 * -Math.PI, .2 * Math.PI),
@@ -161,7 +162,9 @@ export const throwableAnimation = async () => {
         updateBodies() {
             this.DOM.throwables.forEach(((t, e) => {
                 const i = this.bodies[e],
-                    s = t.getBoundingClientRect(),
+                    inner = t.querySelector("span"),
+                    measureEl = inner instanceof HTMLElement ? inner : t,
+                    s = measureEl.getBoundingClientRect(),
                     n = "sharp" === this.options.roundness ? 0 : s.height / 2,
                     o = Matter.Bodies.rectangle(i.position.x, i.position.y, s.width, s.height, {
                         chamfer: {
