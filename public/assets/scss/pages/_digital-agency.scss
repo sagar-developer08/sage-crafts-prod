@@ -1138,10 +1138,14 @@ video.video-area {
         width: 215px;
         height: 100px;
         padding: 10px 20px;
-        background-color: var(--primary);
+        background-color: #abc9c3;
         align-items: center;
         border-radius: 100px;
         transform: translate(-50%, -50%) rotate(0.00rad);
+
+        &.bg-theme {
+            background-color: #abc9c3 !important;
+        }
 
         @media #{$xxl} {
             width: 165px;
