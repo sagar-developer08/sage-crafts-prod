@@ -43,19 +43,19 @@
     }
 
     .header__logo {
-        border: 1px solid var(--border);
-        padding: 8px 20px;
-        border-radius: 60px;
-        background-color: #F9E6DC;
+        border: 0;
+        padding: 0;
+        border-radius: 0;
+        background-color: transparent;
         display: inline-flex;
         align-items: center;
         justify-content: center;
 
         @media #{$lg} {
-            padding: 8px 20px;
-            border: 1px solid var(--border);
-            border-radius: 60px;
-            background-color: #F9E6DC;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background-color: transparent;
         }
 
         img {
@@ -64,7 +64,6 @@
             // height: auto;
             max-height: 65px !important;
             object-fit: contain;
-            mix-blend-mode: multiply;
             display: block;
         }
     }

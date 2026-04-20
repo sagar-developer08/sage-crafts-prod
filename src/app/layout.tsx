@@ -394,7 +394,7 @@ export const metadata: Metadata = {
     title: "Sage Craft - Creative Agency",
     description:
       "A modern Next.js creative agency & portfolio template built for performance and SEO.",
-    images: [seoSettings.defaultOgImage || "/assets/imgs/logo/logo.png"],
+    images: [seoSettings.defaultOgImage || "/assets/imgs/logo/sagecrafts-logo.png"],
   },
   robots: {
     index: seoSettings.productionReady,
