@@ -57,8 +57,8 @@ export default function ClientSlider({ companyNames }: ClientSliderProps) {
             <Image 
               src={resolveClientImageSrc(src)} 
               alt="client" 
-              width={140}
-              height={140}
+              width={170}
+              height={170}
               style={{ 
                 width: "100%", 
                 height: "100%", 

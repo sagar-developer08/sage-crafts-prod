@@ -74,7 +74,7 @@ export default function InfoAreaAbout({ infoSection }: InfoAreaAboutProps) {
   return (
     <section className="info-area-page-about">
       <div className="container large">
-        <div className="info-area-page-about-inner">
+        <div className="info-area-page-about-inner section-spacing-bottom">
           <div className="section-header fade-anim">
             <div className="section-title-wrapper">
               <div className="subtitle-wrapper">

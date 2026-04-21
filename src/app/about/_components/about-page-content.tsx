@@ -117,7 +117,7 @@ export default function AboutPageContent() {
             {/* about info area end */}
 
             {/* client area start */}
-            <div className="client-area-page-about">
+            {/* <div className="client-area-page-about">
               <div className="client-area-page-about-inner section-spacing">
                 <div className="container large">
                   <div className="section-header fade-anim">
@@ -134,7 +134,7 @@ export default function AboutPageContent() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* client area end */}
 
             {/* media area page about start */}

@@ -63,7 +63,7 @@ export default function ClientCapsules({isHome, companyNames}: Props) {
                 alt="company logo" 
                 width={200}
                 height={200}
-                style={{ height: "auto", width: "auto" }} 
+                style={{ height: "auto", width: "auto", objectFit: "contain" }} 
               />
             </span>
           </div>
