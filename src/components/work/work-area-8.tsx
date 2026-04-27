@@ -409,6 +409,7 @@ import Link from "next/link";
 import { PortfolioItem } from "../../types/homeData";
 
 type WorkItem = {
+  _id?: string;
   title: string;
   image: string;
   date: string;
@@ -465,11 +466,12 @@ const WorkAreaEight = ({ portfolio }: WorkAreaEightProps) => {
     portfolio && portfolio.length > 0
       ? portfolio.flatMap((p) =>
           p.projects.map((proj) => ({
+            _id: proj._id,
             title: proj.title,
-            image: proj.imageUrl,
+            image: proj.imageUrl || "",
             date: proj.year.toString(),
             tag: proj.category,
-            slug: proj.slug, // <-- from API
+            slug: proj.slug,
           }))
         )
       : [];
@@ -522,27 +524,43 @@ const WorkAreaEight = ({ portfolio }: WorkAreaEightProps) => {
                 const href = work.slug
                   ? `/portfolio-details/${work.slug}`
                   : "/portfolio-details";
+                const rowKey = work._id || work.slug || `${work.title}-${index}`;
 
                 return (
-                  <div className="work-box" key={index}>
+                  <div className="work-box" key={rowKey}>
                     <div className="thumb">
                       <div
                         className="image scale"
                         data-cursor-text="View Project"
                       >
-                        <Link href={href}>
+                        <Link href={href} style={{ display: "block", width: "100%" }}>
                           {work.image ? (
-                            <Image
-                              src={work.image}
-                              alt={work.title ?? 'project image'}
-                              width={900}
-                              height={630}
-                              style={{ height: "auto" }}
-                            />
+                            <div
+                              style={{
+                                position: "relative",
+                                width: "100%",
+                                aspectRatio: "840/580",
+                                overflow: "hidden",
+                                borderRadius: 20,
+                              }}
+                            >
+                              <Image
+                                src={work.image}
+                                alt={work.title ?? "project image"}
+                                fill
+                                style={{ objectFit: "cover" }}
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                              />
+                            </div>
                           ) : (
                             <div
                               className="image-placeholder"
-                              style={{ width: 900, height: 630, background: '#f3f3f3' }}
+                              style={{
+                                width: "100%",
+                                aspectRatio: "840/580",
+                                background: "#f3f3f3",
+                                borderRadius: 20,
+                              }}
                               aria-hidden="true"
                             />
                           )}
@@ -554,8 +572,8 @@ const WorkAreaEight = ({ portfolio }: WorkAreaEightProps) => {
                         <Link href={href}>{work.title}</Link>
                       </h3>
                       <div className="meta">
-                        <span className="date">{work.date}</span>
                         <span className="tag">{work.tag}</span>
+                        <span className="date">{work.date}</span>
                       </div>
                     </div>
                   </div>
