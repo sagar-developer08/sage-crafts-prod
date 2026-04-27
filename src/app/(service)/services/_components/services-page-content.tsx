@@ -10,6 +10,7 @@ import ServiceAreaSix from "@/components/services/service-area-6";
 import ClientAreaFour from "@/components/client/client-area-4";
 import ServiceWrapper from "./service-wrapper";
 import PageLoader from "@/components/common/page-loader";
+import { getPublicHomeServicesList } from "@/lib/homePublicServices";
 
 export default function ServicesPageContent() {
   const [data, setData] = useState<ApiResponse | null>(null);
@@ -73,7 +74,13 @@ export default function ServicesPageContent() {
   const serviceInfo =
     data.services && data.services.length > 0 ? data.services[0] : undefined;
 
-  const serviceSection = data?.home?.serviceSection;
+  const publicServices = getPublicHomeServicesList(data?.home?.serviceSection?.services);
+  const serviceSection = data?.home?.serviceSection
+    ? {
+        ...data.home.serviceSection,
+        services: publicServices,
+      }
+    : undefined;
   const clientSection = data?.home?.clientSection;
 
   return (

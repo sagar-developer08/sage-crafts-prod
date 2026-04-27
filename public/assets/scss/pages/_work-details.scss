@@ -188,6 +188,47 @@
         }
     }
 
+    // CMS-driven portfolio: same 3×2 grid on every detail page (no mosaic nth-child jumps)
+    .gallery-wrapper.portfolio-gallery-grid-uniform {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        > * {
+            grid-column: auto;
+            min-width: 0;
+        }
+
+        .image {
+            display: flex;
+            align-items: stretch;
+        }
+    }
+
+    .portfolio-media-placeholder {
+        display: block;
+        width: 100%;
+        border-radius: 20px;
+        background-color: rgba(17, 17, 17, 0.06);
+
+        @media #{$sm} {
+            border-radius: 5px;
+        }
+    }
+
+    .portfolio-gallery-placeholder {
+        aspect-ratio: 3 / 2;
+        min-height: 120px;
+    }
+
+    .portfolio-hero-placeholder {
+        aspect-ratio: 16 / 9;
+        min-height: 240px;
+    }
+
+    .portfolio-final-placeholder {
+        aspect-ratio: 21 / 9;
+        min-height: 200px;
+    }
+
     .details-info {
 
         .title {

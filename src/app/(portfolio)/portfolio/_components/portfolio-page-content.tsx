@@ -9,6 +9,7 @@ import PortfolioWrapper from "./portfolio-wrapper";
 import PageTitle from "@/components/common/page-title";
 import WorkAreaEight from "@/components/work/work-area-8";
 import PortfolioProductMarquee from "@/components/portfolio/portfolio-product-marquee";
+import PortfolioTestimonials from "@/components/portfolio/portfolio-testimonials";
 import CustomCursor from "@/components/common/custom-cursor";
 import PageLoader from "@/components/common/page-loader";
 
@@ -108,6 +109,8 @@ export default function PortfolioPageContent() {
             {/* portfolio area start */}
             <WorkAreaEight portfolio={portfolioItems} />
             {/* portfolio area end */}
+
+            <PortfolioTestimonials portfolio={portfolioItems} />
           </main>
 
           {/* Spacing between portfolio grid and carousel */}

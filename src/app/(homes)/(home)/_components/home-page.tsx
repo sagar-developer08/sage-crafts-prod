@@ -17,6 +17,7 @@ import Header from "@/layout/header/header-one";
 import DigitalAgencyWrapper from "./digital-agency-wrapper";
 import CustomCursor from "@/components/common/custom-cursor";
 import PageLoader from "@/components/common/page-loader";
+import { getPublicHomeServicesList } from "@/lib/homePublicServices";
 
 export default function HomePage() {
   const [data, setData] = useState<ApiResponse | null>(null);
@@ -74,22 +75,19 @@ export default function HomePage() {
   const heroData = data?.home?.hero;
   const aboutData = data?.home?.about;
 
-  // Extract all projects from portfolio array
-  console.log("data in home page", data?.portfolio);
   const allProjects = data?.portfolio?.flatMap(portfolioItem => portfolioItem.projects) ?? [];
 
   // Get the first portfolio item for section header (recentWork)
   const portfolioItem = data?.portfolio?.[0];
   const recentWork = portfolioItem?.recentWork;
 
-  const services = data?.home?.serviceSection?.services ?? [];
+  const services = getPublicHomeServicesList(data?.home?.serviceSection?.services);
   const serviceSection = data?.home?.serviceSection;
 
   const funFactSection = data?.home?.funFactSection;
   const funFactItems = funFactSection?.items ?? [];
 
   const clientSection = data?.home?.clientSection;
-  console.log("clientSection", clientSection);
 
   return (
     <>

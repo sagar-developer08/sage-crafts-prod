@@ -32,7 +32,9 @@ const WorkArea = ({allProjects,portfolioItem,recentWork}:WorkAreaProps) => {
   // // Get the first portfolio item for section header (recentWork)
   // const portfolioItem = data?.portfolio?.[0];
   // const recentWork = portfolioItem?.recentWork;
-  console.log("allProjects in work area", allProjects);
+  const HOME_FEATURED_COUNT = 4;
+  const displayProjects = allProjects.slice(0, HOME_FEATURED_COUNT);
+  const hasMoreProjects = allProjects.length > HOME_FEATURED_COUNT;
 
   return (
     <div className="container large">
@@ -54,8 +56,8 @@ const WorkArea = ({allProjects,portfolioItem,recentWork}:WorkAreaProps) => {
         </div>
         <div className="works-wrapper-box">
           <div className="works-wrapper-1 fade-anim">
-            {allProjects.length > 0 ? (
-              allProjects.map((project) => {
+            {displayProjects.length > 0 ? (
+              displayProjects.map((project) => {
                 const href = project?.slug
                   ? `/portfolio-details/${project.slug}`
                   : "/portfolio-details";
@@ -108,10 +110,22 @@ const WorkArea = ({allProjects,portfolioItem,recentWork}:WorkAreaProps) => {
           </div>
         </div>
         <div className="all-btn-wrapper fade-anim">
-          <Link href="/portfolio" className="rr-btn btn-border hover-bg-theme">
+          <Link
+            href="/portfolio"
+            className="rr-btn btn-border hover-bg-theme"
+            aria-label={
+              hasMoreProjects
+                ? `View all ${allProjects.length} projects on the portfolio page`
+                : "View portfolio page"
+            }
+          >
             <span className="btn-wrap">
-              <span className="text-one">View All Work</span>
-              <span className="text-two">View All Work</span>
+              <span className="text-one">
+                {hasMoreProjects ? "View all projects" : "View portfolio"}
+              </span>
+              <span className="text-two">
+                {hasMoreProjects ? "View all projects" : "View portfolio"}
+              </span>
             </span>
           </Link>
         </div>

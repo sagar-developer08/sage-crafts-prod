@@ -360,6 +360,8 @@ const imgStyle: CSSProperties = { height: "auto" };
 // dedicated style for gallery images so they fill their box
 const galleryImgStyle: CSSProperties = { height: "auto", width: "100%" };
 
+const GALLERY_SLOT_COUNT = 6;
+
 type DetailSection = {
   title: string;
   text: string;
@@ -405,7 +407,29 @@ export default function PortfolioDetailsArea({ project }: Props) {
   } = project;
 
   const techText = (technologies || []).join(", ");
-  const galleryList = galleryImages || [];
+  const rawGallery = galleryImages || [];
+  const hasStoredFinal = !!(finalImageUrl && String(finalImageUrl).trim());
+  let resolvedFinalUrl: string | null = hasStoredFinal
+    ? String(finalImageUrl).trim()
+    : null;
+  let gridSources = [...rawGallery];
+
+  // Legacy: admin used to append the bottom image as an extra galleryImage_* file, so it
+  // landed in galleryImages instead of finalImageUrl.
+  if (!resolvedFinalUrl) {
+    if (rawGallery.length > 6) {
+      resolvedFinalUrl = rawGallery[rawGallery.length - 1] ?? null;
+      gridSources = rawGallery.slice(0, -1);
+    } else if (rawGallery.length === 1) {
+      resolvedFinalUrl = rawGallery[0] ?? null;
+      gridSources = [];
+    }
+  }
+
+  const gallerySlots = Array.from(
+    { length: GALLERY_SLOT_COUNT },
+    (_, i) => gridSources[i] ?? null
+  );
   const sections = detailSections || [];
 
   return (
@@ -452,8 +476,8 @@ export default function PortfolioDetailsArea({ project }: Props) {
           </div>
         </div>
 
-        {imageUrl && (
-          <div className="image-wrapper parallax-view fade-anim">
+        <div className="image-wrapper parallax-view fade-anim">
+          {imageUrl ? (
             <Image
               className="w-100"
               src={imageUrl}
@@ -463,8 +487,13 @@ export default function PortfolioDetailsArea({ project }: Props) {
               data-speed="0.8"
               style={imgStyle}
             />
-          </div>
-        )}
+          ) : (
+            <div
+              className="portfolio-media-placeholder portfolio-hero-placeholder"
+              aria-hidden
+            />
+          )}
+        </div>
 
         <div className="container large">
           <div className="section-info fade-anim">
@@ -501,11 +530,10 @@ export default function PortfolioDetailsArea({ project }: Props) {
           </div>
         </div>
 
-        {/* 🔧 GALLERY: six images in line */}
-        {galleryList.length > 0 && (
-          <div className="gallery-wrapper fade-anim">
-            {galleryList.slice(0, 6).map((src, idx) => (
-              <div className="image parallax-view" key={idx}>
+        <div className="gallery-wrapper portfolio-gallery-grid-uniform fade-anim">
+          {gallerySlots.map((src, idx) => (
+            <div className="image parallax-view" key={`gallery-${idx}`}>
+              {src ? (
                 <Image
                   src={src}
                   alt={`${title} gallery ${idx + 1}`}
@@ -515,10 +543,15 @@ export default function PortfolioDetailsArea({ project }: Props) {
                   className="w-100"
                   style={galleryImgStyle}
                 />
-              </div>
-            ))}
-          </div>
-        )}
+              ) : (
+                <div
+                  className="portfolio-media-placeholder portfolio-gallery-placeholder"
+                  aria-hidden
+                />
+              )}
+            </div>
+          ))}
+        </div>
 
         <div className="container large">
           <div className="section-details fade-anim">
@@ -543,11 +576,11 @@ export default function PortfolioDetailsArea({ project }: Props) {
           </div>
         </div>
 
-        {finalImageUrl && (
-          <div className="gallery-wrapper-2 fade-anim">
-            <div className="image parallax-view">
+        <div className="gallery-wrapper-2 fade-anim">
+          <div className="image parallax-view">
+            {resolvedFinalUrl ? (
               <Image
-                src={finalImageUrl}
+                src={resolvedFinalUrl}
                 alt={`${title} final`}
                 width={1200}
                 height={800}
@@ -555,9 +588,14 @@ export default function PortfolioDetailsArea({ project }: Props) {
                 className="w-100"
                 style={galleryImgStyle}
               />
-            </div>
+            ) : (
+              <div
+                className="portfolio-media-placeholder portfolio-final-placeholder"
+                aria-hidden
+              />
+            )}
           </div>
-        )}
+        </div>
       </div>
     </section>
   );
