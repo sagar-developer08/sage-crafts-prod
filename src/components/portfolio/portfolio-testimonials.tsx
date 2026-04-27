@@ -207,6 +207,7 @@ export default function PortfolioTestimonials({ portfolio }: Props) {
             loop={false}
             rewind={hasMultiple}
             watchSlidesProgress
+            watchOverflow
             autoplay={
               autoplayEnabled
                 ? {
