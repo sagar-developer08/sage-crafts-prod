@@ -48,7 +48,10 @@ const WorkArea = ({allProjects,portfolioItem,recentWork}:WorkAreaProps) => {
             </div>
           </div>
           <div className="text-wrapper">
-            <p className="text">{recentWork?.subheading ?? "Excellency in creative designs"}</p>
+            <p className="text">
+              {recentWork?.subheading ??
+                "End-to-end digital solutions built for scale and performance."}
+            </p>
           </div>
           <div className="total-count">
             <span className="number">({allProjects.length})</span>
