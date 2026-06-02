@@ -102,7 +102,7 @@ const Footer: React.FC = () => {
                 </li>
                 <li>
                   <span className="label">Email:</span>
-                  <a href="mailto:info@sagecraft.com">info@sagecraft.com</a>
+                  <a href="mailto:info@sagecrafts.in">info@sagecrafts.in</a>
                 </li>
                 <li>
                   <span className="label">Location:</span>
