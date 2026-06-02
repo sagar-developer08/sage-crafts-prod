@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'SageCrafts | Web, App, AI and Cloud Solutions',
     description:
       'SageCrafts builds scalable websites, apps, AI workflows, and cloud systems for growth-focused businesses.',
-    canonicalUrl: 'https://sagecrafts.in',
+    canonicalUrl: 'https://www.sagecrafts.in',
   });
 }
 
