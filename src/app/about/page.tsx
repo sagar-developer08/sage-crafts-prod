@@ -10,9 +10,9 @@ import AboutPageContent from "./_components/about-page-content";
 export async function generateMetadata(): Promise<Metadata> {
   return getSeoMetadata("about", {
     // Page-specific fallback defaults (used if API fails)
-    title: "About Us – Sage Craft",
-    description: "Learn about Sage Craft, a creative agency specializing in branding and UI/UX since 2012",
-    canonicalUrl: "https://sagecraft.com/about",
+    title: "About Us – SageCrafts",
+    description: "Learn about SageCrafts, a creative agency specializing in branding and UI/UX since 2012",
+    canonicalUrl: "https://sagecrafts.in/about",
   });
 }
 

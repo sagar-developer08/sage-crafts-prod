@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Sage Craft Location"
+                title="SageCrafts Location"
               ></iframe>
             </div>
             <div className="footer-location-text">

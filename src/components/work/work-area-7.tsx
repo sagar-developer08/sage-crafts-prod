@@ -25,7 +25,7 @@ const WorkAreaSeven: React.FC = () => {
                 <div className="section-title-wrapper">
                   <div className="title-wrapper">
                     <h2 className="section-title">
-                      We're Sage Craft®—a design and development agency based in
+                      We're SageCrafts®—a design and development agency based in
                       Germany.
                     </h2>
                   </div>

@@ -17,7 +17,7 @@ const testimonials = [
     light: true,
   },
   {
-    text: `Sage Craft always eager to collaborate with forward-thinking individuals and organizations, using the power of design and technology to tackle today's challenges and shape a better future from sleek websites to memorable branding, I offer creative solutions that connect, engage, and drive results`,
+    text: `SageCrafts always eager to collaborate with forward-thinking individuals and organizations, using the power of design and technology to tackle today's challenges and shape a better future from sleek websites to memorable branding, I offer creative solutions that connect, engage, and drive results`,
     name: "Brenda C. Janet",
     post: "Lead Designer, Fexzo",
     icon: "/assets/imgs/icon/icon-3.webp",

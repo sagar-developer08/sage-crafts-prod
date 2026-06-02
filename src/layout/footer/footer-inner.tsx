@@ -63,7 +63,7 @@ const FooterInner: React.FC = () => {
             <Link href="/">
               <Image
                 src={logo}
-                alt="Sage Crafts"
+                alt="SageCrafts"
                 style={{ height: "auto", width: "100%" }}
               />
             </Link>
@@ -71,7 +71,7 @@ const FooterInner: React.FC = () => {
           <div className="info-text">
             <div className="text-wrapper">
               <p className="text">
-                Sage Crafts is a startup digital agency of design, development
+                SageCrafts is a startup digital agency of design, development
                 and marketing that works friendly with global client
               </p>
             </div>
@@ -148,7 +148,7 @@ const FooterInner: React.FC = () => {
         <div className="copyright-area-inner">
           <div className="copyright-text">
             <p className="text">
-              © {new Date().getFullYear()} Sage Crafts. All rights reserved
+              © {new Date().getFullYear()} SageCrafts. All rights reserved
             </p>
           </div>
         </div>

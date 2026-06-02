@@ -26,7 +26,7 @@ interface WorkItem {
 
 const workItems: WorkItem[] = [
   {
-    title: 'Sage Craft Digital Agency HTML Template',
+    title: 'SageCrafts Digital Agency HTML Template',
     image: project_1,
     tags: 'WordPress, Themeforest',
     date: '(2025)',
@@ -50,7 +50,7 @@ const workItems: WorkItem[] = [
     date: '(2022)',
   },
   {
-    title: 'Sage Craft Digital Agency HTML Template',
+    title: 'SageCrafts Digital Agency HTML Template',
     image: project_5,
     tags: 'WordPress, Themeforest',
     date: '(2025)',
@@ -86,7 +86,7 @@ const workItems: WorkItem[] = [
     date: '(2022)',
   },
   {
-    title: 'Sage Craft Digital Agency HTML Template',
+    title: 'SageCrafts Digital Agency HTML Template',
     image: project_11,
     tags: 'WordPress, Themeforest',
     date: '(2025)',

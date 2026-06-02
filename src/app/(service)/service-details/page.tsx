@@ -15,9 +15,9 @@ import ServiceDetailsValueArea from "./_components/service-details-value-area";
  */
 export async function generateMetadata(): Promise<Metadata> {
   return getSeoMetadata("service-details", {
-    title: "Service Details – Sage Craft",
+    title: "Service Details – SageCrafts",
     description: "Learn more about our specialized services and how we can help your business grow.",
-    canonicalUrl: "https://sagecraft.com/service-details",
+    canonicalUrl: "https://sagecrafts.in/service-details",
   });
 }
 

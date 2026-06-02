@@ -107,7 +107,7 @@ export default function HeroOne({ hero }: HeroProps) {
             </div>
           </div>
           <div className="big-text-wrapper">
-            <h2 className="big-text">Sage Craft</h2>
+            <h2 className="big-text">SageCrafts</h2>
           </div>
         </div>
       </div>

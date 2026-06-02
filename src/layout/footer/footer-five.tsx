@@ -12,7 +12,7 @@ export default function FooterFive() {
                         <Image src={logo} alt="shape-20" style={{height:'auto'}}/>
                     </div>
                     <div className="footer-widget__content">
-                        <h2 className="footer-widget-title">Sage Craft® — A design and brand studio, based in Canada.
+                        <h2 className="footer-widget-title">SageCrafts® — A design and brand studio, based in Canada.
                         </h2>
                         <div className="footer-widget__content-wrapper">
                             <div className="footer-widget__content-item">
