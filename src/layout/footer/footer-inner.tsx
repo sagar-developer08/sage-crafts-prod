@@ -76,7 +76,7 @@ const FooterInner: React.FC = () => {
               </p>
             </div>
             <div className="info-link">
-              <a href="mailto:info@sagecraft.com">info@sagecraft.com</a>
+              <a href="mailto:info@sagecrafts.in">info@sagecrafts.in</a>
             </div>
           </div>
         </div>

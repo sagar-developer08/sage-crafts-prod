@@ -103,15 +103,15 @@ export default function SideToggle({ isOpen, onSideToggle,showMobileMenu }: IPro
                   <span className="icon">
                     <i className="fa-solid fa-location-dot"></i>
                   </span>
-                  <span className="text">3891 Ranchview Dr. Richardson</span>
+                  <span className="text">PINNACLE BUSINESS PARK, Mahakali Caves Rd, Mumbai Andheri East 93</span>
                 </div>
                 <div className="contact-item">
                   <span className="icon">
                     <i className="fa-solid fa-envelope"></i>
                   </span>
                   <span className="text">
-                    <a href="mailto:hello@sagecraftagency.com">
-                      hello@sagecraftagency.com
+                    <a href="mailto:info@sagecrafts.in">
+                      info@sagecrafts.in
                     </a>
                   </span>
                 </div>
@@ -120,7 +120,7 @@ export default function SideToggle({ isOpen, onSideToggle,showMobileMenu }: IPro
                     <i className="fa-solid fa-phone"></i>
                   </span>
                   <span className="text">
-                    <a href="tel:(505)555-0125">(505) 555-0125</a>
+                    <a href="tel:+917700902158">+91 77009 02158</a>
                   </span>
                 </div>
               </div>
