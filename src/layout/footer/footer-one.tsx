@@ -1,19 +1,37 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useToast } from "@/components/common/toast-provider";
+
+const SUPPORT_PHONE_DISPLAY = "+91 77009 02158";
+const SUPPORT_PHONE_TEL = "+917700902158";
 
 const Footer: React.FC = () => {
+  const { showToast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
   });
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Add subscription logic here (e.g., API call)
-    alert(`Subscribed with: ${formData.name}, ${formData.email}, ${formData.phone}`);
-    setFormData({ name: "", email: "", phone: "" });
+    setSubmitting(true);
+
+    try {
+      // TODO: wire newsletter API when available
+      await new Promise((resolve) => setTimeout(resolve, 400));
+      showToast(
+        "success",
+        "Thanks for subscribing! We'll keep you updated on new features and releases."
+      );
+      setFormData({ name: "", email: "", phone: "" });
+    } catch {
+      showToast("error", "Subscription failed. Please try again in a moment.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const quickLinks = [
@@ -80,7 +98,7 @@ const Footer: React.FC = () => {
               <ul className="footer-contact-list">
                 <li>
                   <span className="label">Phone:</span>
-                  <a href="tel:+911234567890">+91 123 456 7890</a>
+                  <a href={`tel:${SUPPORT_PHONE_TEL}`}>{SUPPORT_PHONE_DISPLAY}</a>
                 </li>
                 <li>
                   <span className="label">Email:</span>
@@ -131,8 +149,8 @@ const Footer: React.FC = () => {
                     required
                   />
                 </div>
-                <button type="submit" className="subscribe-button">
-                  Subscribe
+                <button type="submit" className="subscribe-button" disabled={submitting}>
+                  {submitting ? "Subscribing..." : "Subscribe"}
                 </button>
               </form>
               <div className="subscription-disclaimer">

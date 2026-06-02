@@ -1,8 +1,10 @@
 "use client";
 import { FormEvent, useState } from "react";
 import Image from "next/image";
+import { useToast } from "@/components/common/toast-provider";
 
 export default function ContactArea() {
+  const { showToast } = useToast();
   const [budget, setBudget] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -13,15 +15,10 @@ export default function ContactArea() {
     message: "",
   });
   const [loading, setLoading] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{
-    type: "success" | "error" | null;
-    message: string;
-  }>({ type: null, message: "" });
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setSubmitStatus({ type: null, message: "" });
 
     try {
       const apiUrl = process.env.NEXT_PUBLIC_FRONTEND_API_URL || "http://localhost:8080/api";
@@ -51,10 +48,10 @@ export default function ContactArea() {
       // Capture form data before resetting for WhatsApp notification
       const submittedData = { ...formData, budget };
 
-      setSubmitStatus({
-        type: "success",
-        message: "Thank you for contacting us! We'll get back to you soon.",
-      });
+      showToast(
+        "success",
+        "Thank you for contacting us! We'll get back to you soon."
+      );
 
       // Reset form
       setFormData({
@@ -81,10 +78,10 @@ export default function ContactArea() {
       // window.open(whatsappUrl, '_blank');
     } catch (error: any) {
       console.error("Error submitting form:", error);
-      setSubmitStatus({
-        type: "error",
-        message: error.message || "Something went wrong. Please try again.",
-      });
+      showToast(
+        "error",
+        error.message || "Something went wrong. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -239,21 +236,6 @@ export default function ContactArea() {
                     </span>
                   </button>
                 </div>
-                {submitStatus.type && (
-                  <div
-                    id="response-message"
-                    style={{
-                      marginTop: "20px",
-                      padding: "15px",
-                      borderRadius: "5px",
-                      backgroundColor: submitStatus.type === "success" ? "#d4edda" : "#f8d7da",
-                      color: submitStatus.type === "success" ? "#155724" : "#721c24",
-                      border: `1px solid ${submitStatus.type === "success" ? "#c3e6cb" : "#f5c6cb"}`,
-                    }}
-                  >
-                    {submitStatus.message}
-                  </div>
-                )}
               </form>
             </div>
           </div>
