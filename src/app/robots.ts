@@ -1,111 +1,77 @@
-import { MetadataRoute } from 'next';
+import { MetadataRoute } from "next";
+import {
+  getPublicApiBaseUrl,
+  isSeoProductionReadyFallback,
+} from "@/utils/seoEnv";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
+
+const DEFAULT_SITE_URL = "https://sagecrafts.in";
+
+function blockAll(): MetadataRoute.Robots {
+  return {
+    rules: { userAgent: "*", disallow: "/" },
+  };
+}
+
+function allowAll(siteUrl: string): MetadataRoute.Robots {
+  return {
+    rules: { userAgent: "*", allow: "/" },
+    sitemap: `${siteUrl.replace(/\/$/, "")}/sitemap.xml`,
+  };
+}
+
+async function fetchProductionReady(
+  apiUrl: string
+): Promise<{ productionReady: boolean; siteUrl: string } | null> {
+  const response = await fetch(`${apiUrl}/seo-settings/robots-status`, {
+    cache: "no-store",
+  });
+
+  if (!response.ok) return null;
+
+  const data = await response.json();
+  return {
+    productionReady: data.productionReady ?? false,
+    siteUrl: data.siteUrl || DEFAULT_SITE_URL,
+  };
+}
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
-  const apiUrl = process.env.NEXT_PUBLIC_FRONTEND_API_URL;
-  
+  const apiUrl = getPublicApiBaseUrl();
+
   if (!apiUrl) {
-    // Fallback: disallow all if API URL is not configured
-    return {
-      rules: {
-        userAgent: '*',
-        disallow: '/',
-      },
-    };
+    console.warn(
+      "robots.txt: NEXT_PUBLIC_FRONTEND_API_URL is missing on the frontend host"
+    );
+    if (isSeoProductionReadyFallback()) {
+      return allowAll(DEFAULT_SITE_URL);
+    }
+    return blockAll();
   }
 
   try {
-    // Fetch production ready status from backend
-    const response = await fetch(`${apiUrl}/seo-settings/robots-status`, {
-      next: { revalidate: 60 }, // Cache for 60 seconds
-    });
+    const status = await fetchProductionReady(apiUrl);
 
-    if (!response.ok) {
-      // If API fails, disallow all for safety
-      return {
-        rules: {
-          userAgent: '*',
-          disallow: '/',
-        },
-      };
-    }
-
-    // Check if response is JSON before parsing
-    const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      const text = await response.text();
-      // If response starts with HTML, it's an error page
-      if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
-        console.warn('API returned HTML instead of JSON for robots status');
-        return {
-          rules: {
-            userAgent: '*',
-            disallow: '/',
-          },
-        };
+    if (!status) {
+      console.warn("robots.txt: API robots-status request failed");
+      if (isSeoProductionReadyFallback()) {
+        return allowAll(DEFAULT_SITE_URL);
       }
-      // Try to parse as JSON anyway if it's not HTML
-      try {
-        const data = JSON.parse(text);
-        const productionReady = data.productionReady ?? false;
-        const siteUrl = data.siteUrl || 'https://sagecrafts.in';
-
-        if (!productionReady) {
-          return {
-            rules: {
-              userAgent: '*',
-              disallow: '/',
-            },
-          };
-        }
-
-        return {
-          rules: {
-            userAgent: '*',
-            allow: '/',
-          },
-          sitemap: `${siteUrl}/sitemap.xml`,
-        };
-      } catch {
-        return {
-          rules: {
-            userAgent: '*',
-            disallow: '/',
-          },
-        };
-      }
+      return blockAll();
     }
 
-    const data = await response.json();
-    const productionReady = data.productionReady ?? false;
-    const siteUrl = data.siteUrl || 'https://sagecrafts.in';
-
-    if (!productionReady) {
-      // Site is not ready for production - disallow all crawlers
-      return {
-        rules: {
-          userAgent: '*',
-          disallow: '/',
-        },
-      };
+    if (!status.productionReady) {
+      return blockAll();
     }
 
-    // Site is ready for production - allow all crawlers
-    return {
-      rules: {
-        userAgent: '*',
-        allow: '/',
-      },
-      sitemap: `${siteUrl}/sitemap.xml`,
-    };
+    return allowAll(status.siteUrl);
   } catch (error) {
-    console.error('Error fetching robots status:', error);
-    // On error, disallow all for safety
-    return {
-      rules: {
-        userAgent: '*',
-        disallow: '/',
-      },
-    };
+    console.error("robots.txt: error fetching robots status", error);
+    if (isSeoProductionReadyFallback()) {
+      return allowAll(DEFAULT_SITE_URL);
+    }
+    return blockAll();
   }
 }
-

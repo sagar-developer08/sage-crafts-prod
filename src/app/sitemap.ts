@@ -1,7 +1,11 @@
 import { MetadataRoute } from 'next';
+import { getPublicApiBaseUrl, isSeoProductionReadyFallback } from '@/utils/seoEnv';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const apiUrl = process.env.NEXT_PUBLIC_FRONTEND_API_URL;
+  const apiUrl = getPublicApiBaseUrl();
   
   if (!apiUrl) {
     // Fallback: return empty sitemap if API URL is not configured
