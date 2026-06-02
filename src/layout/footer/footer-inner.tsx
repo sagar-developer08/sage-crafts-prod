@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/imgs/logo/sagecrafts-logo.png";
 import icon from "@/assets/imgs/icon/icon-1.webp";
+import { useToast } from "@/components/common/toast-provider";
 
 interface NavItem {
   title: string;
@@ -32,11 +33,26 @@ const officeLinks: NavItem[] = [
 ];
 
 const FooterInner: React.FC = () => {
+  const { showToast } = useToast();
   const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubscribe = () => {
-    alert(`Subscribed with email: ${email}`);
-    setEmail("");
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) {
+      showToast("error", "Please enter your email address.");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 400));
+      showToast("success", "Thanks for subscribing! We'll be in touch soon.");
+      setEmail("");
+    } catch {
+      showToast("error", "Subscription failed. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -68,21 +84,23 @@ const FooterInner: React.FC = () => {
           <div className="footer-widget-wrapper">
             <div className="footer-widget-box newsletter">
               <div className="subscribe-form">
-                <div className="input-field">
+                <form className="input-field" onSubmit={handleSubscribe}>
                   <input
                     type="email"
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                   />
                   <button
-                    type="button"
+                    type="submit"
                     className="subscribe-btn"
-                    onClick={handleSubscribe}
+                    disabled={submitting}
+                    aria-label={submitting ? "Subscribing" : "Subscribe"}
                   >
                     <Image src={icon} alt="" />
                   </button>
-                </div>
+                </form>
               </div>
               <div className="subscription-text">
                 <div className="text-wrapper">
