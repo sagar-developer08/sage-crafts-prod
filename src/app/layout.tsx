@@ -347,10 +347,10 @@ const Sequel_sans_medium = localFont({
 import { getSeoSettings } from '@/utils/seoSettings';
 import AppProviders from '@/components/common/app-providers';
 
-// Fetch SEO settings for metadata
-const seoSettings = await getSeoSettings();
+export async function generateMetadata(): Promise<Metadata> {
+  const seoSettings = await getSeoSettings();
 
-export const metadata: Metadata = {
+  return {
   title: {
     default: "Sage Craft - Creative Agency & Portfolio",
     template: "%s | Sage Craft",
@@ -424,7 +424,8 @@ export const metadata: Metadata = {
       { url: "/assets/imgs/logo/sagecrafts-logo.png", sizes: "180x180" },
     ],
   },
-};
+  };
+}
 
 export const viewport = {
   width: "device-width",
