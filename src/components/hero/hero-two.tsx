@@ -56,7 +56,7 @@ export default function HeroTwo() {
                 Germany
               </p>
               <p className="text about-text rr_title_anim">
-                Sage Craft is the first and only creative agency for your real
+                SageCrafts is the first and only creative agency for your real
                 exploration. It’s one private place to save everything you can
                 realize about digital beautifully design.
               </p>

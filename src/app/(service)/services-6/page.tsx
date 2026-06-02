@@ -14,9 +14,9 @@ import CapabilitiesAreaTwo from "@/components/capabilities/capability-area-2";
  */
 export async function generateMetadata(): Promise<Metadata> {
   return getSeoMetadata("services-6", {
-    title: "Our Services – Sage Craft",
+    title: "Our Services – SageCrafts",
     description: "Discover our expertise in branding, UI/UX design, web development, and creative solutions.",
-    canonicalUrl: "https://sagecraft.com/services-6",
+    canonicalUrl: "https://sagecrafts.in/services-6",
   });
 }
 

@@ -43,7 +43,7 @@ export default function PortfolioProductMarquee({
             <Link href="/" className="portfolio-product-marquee__logo-link">
               <Image
                 src={logo}
-                alt="Sage Crafts"
+                alt="SageCrafts"
                 width={220}
                 height={80}
                 className="portfolio-product-marquee__logo-img"

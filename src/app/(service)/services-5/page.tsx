@@ -14,9 +14,9 @@ import ServiceAreaFive from "@/components/services/service-area-5";
  */
 export async function generateMetadata(): Promise<Metadata> {
   return getSeoMetadata("services-5", {
-    title: "Our Services – Sage Craft",
+    title: "Our Services – SageCrafts",
     description: "Discover our expertise in branding, UI/UX design, web development, and creative solutions.",
-    canonicalUrl: "https://sagecraft.com/services-5",
+    canonicalUrl: "https://sagecrafts.in/services-5",
   });
 }
 

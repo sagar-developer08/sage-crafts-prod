@@ -36,7 +36,7 @@ export default function AboutOne({about}: {about?: any}) {
             <div className="shape-4"></div>
             <div className="section-title-wrapper">
               <div className="title-wrapper">
-                {/* <h2 className="section-title font-instrumentsans-medium">Sage Craft</h2> */}
+                {/* <h2 className="section-title font-instrumentsans-medium">SageCrafts</h2> */}
               </div>
             </div>
             <div className="text-wrapper">

@@ -103,12 +103,12 @@
 
 // export const metadata: Metadata = {
 //   title: {
-//     default: "Sage Craft - Creative Agency & Portfolio",
-//     template: "%s | Sage Craft",
+//     default: "SageCrafts - Creative Agency & Portfolio",
+//     template: "%s | SageCrafts",
 //   },
 
 //   description:
-//     "Sage Craft is a modern creative agency and portfolio template built with Next.js, designed to showcase design, development, and digital experiences.",
+//     "SageCrafts is a modern creative agency and portfolio template built with Next.js, designed to showcase design, development, and digital experiences.",
 
 //   keywords: [
 //     "creative agency",
@@ -119,11 +119,11 @@
 //     "digital studio",
 //   ],
 
-//   authors: [{ name: "Sage Craft" }],
-//   creator: "Sage Craft",
-//   publisher: "Sage Craft",
+//   authors: [{ name: "SageCrafts" }],
+//   creator: "SageCrafts",
+//   publisher: "SageCrafts",
 
-//   metadataBase: new URL("https://sagecraft.com"),
+//   metadataBase: new URL("https://sagecrafts.in"),
 
 //   alternates: {
 //     canonical: "/",
@@ -132,24 +132,24 @@
 //   openGraph: {
 //     type: "website",
 //     locale: "en_US",
-//     url: "https://sagecraft.com",
-//     siteName: "Sage Craft",
-//     title: "Sage Craft - Creative Agency & Portfolio",
+//     url: "https://sagecrafts.in",
+//     siteName: "SageCrafts",
+//     title: "SageCrafts - Creative Agency & Portfolio",
 //     description:
-//       "Showcase your creative work with Sage Craft – a high-performance Next.js portfolio and agency template.",
+//       "Showcase your creative work with SageCrafts – a high-performance Next.js portfolio and agency template.",
 //     images: [
 //       {
 //         url: "/assets/imgs/logo/logo.png",
 //         width: 1200,
 //         height: 630,
-//         alt: "Sage Craft Logo",
+//         alt: "SageCrafts Logo",
 //       },
 //     ],
 //   },
 
 //   twitter: {
 //     card: "summary_large_image",
-//     title: "Sage Craft - Creative Agency",
+//     title: "SageCrafts - Creative Agency",
 //     description:
 //       "A modern Next.js creative agency & portfolio template built for performance and SEO.",
 //     images: ["/assets/imgs/logo/logo.png"],
@@ -352,22 +352,22 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
   title: {
-    default: "Sage Craft - Creative Agency & Portfolio",
-    template: "%s | Sage Craft",
+    default: "SageCrafts | Web, App, AI and Cloud Solutions",
+    template: "%s | SageCrafts",
   },
   description:
-    "Sage Craft is a modern creative agency and portfolio template built with Next.js, designed to showcase design, development, and digital experiences.",
+    "SageCrafts is your full-service digital partner for websites, mobile apps, AI solutions, and cloud platforms across India, Dubai, and the USA.",
   keywords: [
-    "creative agency",
-    "portfolio",
-    "next.js agency template",
-    "web design",
-    "branding",
-    "digital studio",
+    "SageCrafts",
+    "web development",
+    "mobile apps",
+    "AI solutions",
+    "cloud DevOps",
+    "digital agency",
   ],
-  authors: [{ name: "Sage Craft" }],
-  creator: "Sage Craft",
-  publisher: "Sage Craft",
+  authors: [{ name: "SageCrafts" }],
+  creator: "SageCrafts",
+  publisher: "SageCrafts",
   metadataBase: new URL(seoSettings.siteUrl),
   alternates: {
     canonical: "/",
@@ -376,24 +376,24 @@ export async function generateMetadata(): Promise<Metadata> {
     type: "website",
     locale: "en_US",
     url: seoSettings.siteUrl,
-    siteName: "Sage Craft",
-    title: "Sage Craft - Creative Agency & Portfolio",
+    siteName: "SageCrafts",
+    title: "SageCrafts | Web, App, AI and Cloud Solutions",
     description:
-      "Showcase your creative work with Sage Craft – a high-performance Next.js portfolio and agency template.",
+      "SageCrafts builds scalable websites, apps, AI workflows, and cloud systems for growth-focused businesses.",
     images: [
       {
         url: seoSettings.defaultOgImage || "/assets/imgs/logo/sagecrafts-logo.png",
         width: 1200,
         height: 630,
-        alt: "Sage Craft Logo",
+        alt: "SageCrafts Logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sage Craft - Creative Agency",
+    title: "SageCrafts | Web, App, AI and Cloud Solutions",
     description:
-      "A modern Next.js creative agency & portfolio template built for performance and SEO.",
+      "Full-service digital partner for websites, mobile apps, AI solutions, and cloud platforms.",
     images: [seoSettings.defaultOgImage || "/assets/imgs/logo/sagecrafts-logo.png"],
   },
   robots: {

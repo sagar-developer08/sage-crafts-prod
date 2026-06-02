@@ -9,7 +9,7 @@ export default function HeroSix() {
             <div className="container large">
               <div className="title-wrapper">
                 <h2 className="section-title font-tartuffotrial-thin char-anim">
-                  We're Sage Craft, a creative design agency based in {" "}
+                  We're SageCrafts, a creative design agency based in {" "}
                   <span>Germany</span>
                 </h2>
               </div>

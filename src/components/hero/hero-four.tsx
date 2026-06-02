@@ -44,10 +44,10 @@ export default function HeroFour() {
             </div>
             <div className="title-wrapper fade-anim" data-delay="0.75">
               <h1 className="section-title font-thunder-regular">
-                Sage Craft <sup>R</sup> <span className="bg"></span> design studio
+                SageCrafts <sup>R</sup> <span className="bg"></span> design studio
               </h1>
               <p className="decisions">
-                Sage Craft is the first and only branding studio for your real
+                SageCrafts is the first and only branding studio for your real
                 exploration. you can realize about digital beautifully design.
               </p>
             </div>

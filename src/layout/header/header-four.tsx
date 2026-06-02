@@ -25,7 +25,7 @@ export default function HeaderFour() {
               </div>
               <div className="header__middel">
                 <p>
-                  Sage Craft provides user centered <br />
+                  SageCrafts provides user centered <br />
                   Ui and brand identities design <br />
                   [since 2012]
                 </p>

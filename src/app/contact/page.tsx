@@ -12,8 +12,8 @@ import PageTitle from "@/components/common/page-title";
  */
 export async function generateMetadata(): Promise<Metadata> {
   return getSeoMetadata("contact", {
-    title: "Contact Us | Start Your Project with Sage Craft",
-    description: "Ready to elevate your digital presence? Contact Sage Craft today for a free consultation on branding, design, or development.",
+    title: "Contact Us | Start Your Project with SageCrafts",
+    description: "Ready to elevate your digital presence? Contact SageCrafts today for a free consultation on branding, design, or development.",
     canonicalUrl: "https://sagecrafts.in/contact",
   });
 }

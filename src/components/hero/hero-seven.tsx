@@ -39,7 +39,7 @@ export default function HeroSeven() {
                     </video>
                   </div>
                   <p className="text">
-                    Sage Craft is the first and only branding studio for your real
+                    SageCrafts is the first and only branding studio for your real
                     exploration. You can realize digital beautifully designed.
                   </p>
                 </div>

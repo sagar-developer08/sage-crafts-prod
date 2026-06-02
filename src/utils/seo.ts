@@ -30,11 +30,12 @@ export interface SeoApiResponse {
 
 // Default SEO configuration
 const DEFAULT_SEO: SeoData = {
-  title: 'Sage Craft – Creative Agency',
-  description: 'Creative agency and portfolio website',
-  keywords: ['creative agency', 'branding', 'ui ux', 'portfolio'],
+  title: 'SageCrafts | Web, App, AI and Cloud Solutions',
+  description:
+    'SageCrafts builds scalable websites, apps, AI workflows, and cloud systems for growth-focused businesses.',
+  keywords: ['SageCrafts', 'web development', 'mobile apps', 'AI solutions', 'cloud DevOps'],
   ogImage: '/assets/imgs/og/default.png',
-  canonicalUrl: 'https://sagecraft.com',
+  canonicalUrl: 'https://sagecrafts.in',
   robots: {
     index: true,
     follow: true,
@@ -42,7 +43,7 @@ const DEFAULT_SEO: SeoData = {
 };
 
 // Site-wide defaults
-const SITE_NAME = 'Sage Craft';
+const SITE_NAME = 'SageCrafts';
 const DEFAULT_OG_IMAGE = '/assets/imgs/og/default.png';
 
 /**

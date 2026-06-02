@@ -11,7 +11,7 @@ const defaultInfoList = {
 };
 
 const defaultParagraphs = [
-  "Sage Craft is the first and only creative agency for your real exploration. It's one private place to save everything you can realize about digital beautifully design.",
+  "SageCrafts is the first and only creative agency for your real exploration. It's one private place to save everything you can realize about digital beautifully design.",
   "As a global creative agency, we understand the importance of staying ahead of the game. That's why we partner with some of the world's best talent to bring fresh ideas.",
 ];
 

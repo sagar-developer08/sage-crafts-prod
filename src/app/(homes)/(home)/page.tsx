@@ -13,8 +13,9 @@ import HomePage from './_components/home-page';
 export async function generateMetadata(): Promise<Metadata> {
   return getSeoMetadata('home', {
     // Page-specific fallback defaults (used if API fails)
-    title: 'Sage Craft – Creative Agency',
-    description: 'Creative agency specializing in branding and UI/UX',
+    title: 'SageCrafts | Web, App, AI and Cloud Solutions',
+    description:
+      'SageCrafts builds scalable websites, apps, AI workflows, and cloud systems for growth-focused businesses.',
     canonicalUrl: 'https://sagecrafts.in',
   });
 }
@@ -30,18 +31,20 @@ export default async function Home() {
   
   // Generate Organization Schema
   const organizationSchema = generateOrganizationSchema({
-    name: 'Sage Craft',
+    name: 'SageCrafts',
     url: seoSettings.siteUrl,
     logo: `${seoSettings.siteUrl}/assets/imgs/logo/sagecrafts-logo.png`,
-    description: 'Creative agency specializing in branding and UI/UX',
+    description:
+      'SageCrafts is your full-service digital partner for websites, mobile apps, AI solutions, and cloud platforms.',
   });
 
   // Generate Website Schema
   const websiteSchema = generateWebsiteSchema({
-    name: 'Sage Craft',
+    name: 'SageCrafts',
     url: seoSettings.siteUrl,
-    description: 'Creative agency and portfolio website',
-    publisherName: 'Sage Craft',
+    description:
+      'Web, app, AI, and cloud solutions for growth-focused businesses.',
+    publisherName: 'SageCrafts',
   });
 
   return (

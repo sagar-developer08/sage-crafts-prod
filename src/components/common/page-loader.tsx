@@ -8,7 +8,7 @@ interface PageLoaderProps {
 
 /**
  * Tech-inspired loader with hexagonal circuit patterns
- * Modern, sophisticated loader matching Sage Craft's tech company aesthetic
+ * Modern, sophisticated loader matching SageCrafts' tech company aesthetic
  */
 export default function PageLoader({ fullScreen = true }: PageLoaderProps) {
   return (

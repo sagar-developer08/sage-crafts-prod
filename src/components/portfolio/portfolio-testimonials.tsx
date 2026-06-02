@@ -20,7 +20,7 @@ type TestimonialSlide = {
 const FALLBACK: Omit<TestimonialSlide, "key">[] = [
   {
     quote:
-      "Sage Craft delivered a thoughtful product experience, clear communication, and reliable engineering support from kickoff to launch.",
+      "SageCrafts delivered a thoughtful product experience, clear communication, and reliable engineering support from kickoff to launch.",
     name: "Product leadership",
     role: "SaaS & mobile delivery",
   },

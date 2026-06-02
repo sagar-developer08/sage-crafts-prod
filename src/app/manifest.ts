@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
   const apiUrl = process.env.NEXT_PUBLIC_FRONTEND_API_URL;
   
-  let siteName = 'Sage Craft';
+  let siteName = 'SageCrafts';
   let siteUrl = 'https://sagecrafts.in';
   let description = 'Creative agency and portfolio website';
 

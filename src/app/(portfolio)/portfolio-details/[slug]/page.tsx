@@ -24,9 +24,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   
   // Fallback to generic portfolio details SEO
   return getSeoMetadata("portfolio-details", {
-    title: `${slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} – Sage Craft`,
+    title: `${slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} – SageCrafts`,
     description: "View detailed case study of our creative project.",
-    canonicalUrl: `https://sagecraft.com/portfolio-details/${slug}`,
+    canonicalUrl: `https://sagecrafts.in/portfolio-details/${slug}`,
   });
 }
 

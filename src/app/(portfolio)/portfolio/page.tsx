@@ -7,9 +7,9 @@ import PortfolioPageContent from "./_components/portfolio-page-content";
  */
 export async function generateMetadata(): Promise<Metadata> {
   return getSeoMetadata("portfolio", {
-    title: "Portfolio – Sage Craft",
+    title: "Portfolio – SageCrafts",
     description: "Explore our creative portfolio showcasing branding, UI/UX, and web design projects.",
-    canonicalUrl: "https://sagecraft.com/portfolio",
+    canonicalUrl: "https://sagecrafts.in/portfolio",
   });
 }
 
